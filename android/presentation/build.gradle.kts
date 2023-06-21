@@ -14,6 +14,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -43,6 +46,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -51,6 +59,10 @@ dependencies {
     implementation(projects.common.kotlin)
 
     implementation(libs.di.hilt.core)
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
     kapt(libs.di.hilt.compiler)
 
     implementation(libs.orbit.compose)
@@ -61,6 +73,7 @@ dependencies {
     implementation(libs.compose.ui.coil)
     implementation(libs.compose.nav)
     implementation(libs.compose.hilt)
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta09")
     implementation(libs.kotlin.collections.immutable)
 
     implementation(libs.core.ktx)

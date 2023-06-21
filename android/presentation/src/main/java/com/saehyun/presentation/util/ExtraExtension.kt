@@ -13,7 +13,7 @@ internal fun putStringExtra(key: String, value: String): String {
     return key + value
 }
 
-internal fun slingStringNavArgument(
+internal fun smonkeyStringNavArgument(
     extra: String,
     defaultValue: String = ""
 ): NamedNavArgument {

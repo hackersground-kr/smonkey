@@ -1,4 +1,4 @@
-package com.saehyun.presentation.theme
+package com.saehyun.presentation.style
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

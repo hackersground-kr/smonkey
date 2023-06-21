@@ -12,7 +12,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import com.saehyun.common_kotlin.runIf
 
-fun Modifier.slingClickable(
+fun Modifier.smonkeyClickable(
     rippleEnabled: Boolean = true,
     rippleColor: Color? = null,
     onLongClick: (() -> Unit)? = null,

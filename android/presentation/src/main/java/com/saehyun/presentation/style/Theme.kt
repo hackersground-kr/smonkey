@@ -1,4 +1,4 @@
-package com.saehyun.presentation.theme
+package com.saehyun.presentation.style
 
 import android.app.Activity
 import android.os.Build
@@ -16,15 +16,15 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = SMonkeyColor.Main1,
+    secondary = SMonkeyColor.Gray900,
+    tertiary = SMonkeyColor.Main3,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = SMonkeyColor.Main1,
+    secondary = SMonkeyColor.Gray900,
+    tertiary = SMonkeyColor.Main3,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun SMonkey_AndroidTheme(
+fun SMonkeyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
