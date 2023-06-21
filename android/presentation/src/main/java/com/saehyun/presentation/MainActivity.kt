@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.saehyun.presentation.feature.home.HomeActivity
 import com.saehyun.presentation.feature.login.SignInActivity
 import com.saehyun.presentation.feature.signup.SignUpActivity
 import com.saehyun.presentation.style.SMonkeyTheme
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        navigateToSignUp()
+        navigateToHome()
         setContent {
             SMonkeyTheme {
 
@@ -33,5 +34,9 @@ class MainActivity : ComponentActivity() {
 
     private fun navigateToSignUp() {
         startActivityWithAnimation<SignUpActivity>()
+    }
+
+    private fun navigateToHome() {
+        startActivityWithAnimation<HomeActivity>()
     }
 }

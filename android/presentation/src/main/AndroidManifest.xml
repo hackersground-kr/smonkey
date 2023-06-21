@@ -17,6 +17,10 @@
             android:theme="@style/Theme.SMonkey"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".feature.home.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SMonkey" />
+        <activity
             android:name=".feature.signup.SignUpActivity"
             android:exported="false"
             android:theme="@style/Theme.SMonkey"

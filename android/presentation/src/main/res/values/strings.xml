@@ -1,3 +1,9 @@
 <resources>
     <string name="title_activity_sign_in">SignInActivity</string>
+    
+    <string name="home">홈</string>
+    <string name="journal">일기</string>
+    <string name="community">커뮤니티</string>
+    <string name="friend">친구</string>
+    <string name="setting">설정</string>
 </resources>
