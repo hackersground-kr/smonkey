@@ -18,12 +18,12 @@
 
 ## 제품 아키텍처 (이미지)
 
-[Logo](./images/smonkey.png)
+[로고](./images/smonkey.png)
 
 ## 제품 소개 슬라이드
 
-[Slide](./decks/smonkey.pptx)
+[슬라이드](./decks/smonkey.pptx)
 
 ## 제품 소개 동영상
 
-[Youtube]()
+[소개 영상]()
