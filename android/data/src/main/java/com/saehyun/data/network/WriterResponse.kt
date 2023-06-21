@@ -1,6 +1,6 @@
-package com.saehyun.domain
+package com.saehyun.data.network
 
-data class Writer(
+data class WriterResponse(
     val backgroundColor: String,
     val level: Int,
     val nextPoint: Int,
@@ -10,7 +10,7 @@ data class Writer(
     val userName: String,
 ) {
     companion object {
-        fun dummy() = Writer(
+        fun dummy() = WriterResponse(
             backgroundColor = "FFFFFF",
             level = 0,
             nextPoint = 0,

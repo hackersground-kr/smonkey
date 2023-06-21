@@ -1,11 +1,11 @@
 package com.saehyun.presentation.feature.community
 
 import androidx.compose.runtime.Immutable
-import com.saehyun.domain.Writer
+import com.saehyun.data.network.WriterResponse
 
 @Immutable
 data class PostPreviewUiModel(
-    val writer: Writer,
+    val writer: WriterResponse,
     val title: String,
     val content: String,
     val heartNum: Int,
@@ -14,7 +14,7 @@ data class PostPreviewUiModel(
 ) {
     companion object {
         fun dummy() = PostPreviewUiModel(
-            writer = Writer.dummy(),
+            writer = WriterResponse.dummy(),
             title = "안녕안녕테승ㅌ",
             content = "쿠쿠루삥뽕",
             heartNum = 4,

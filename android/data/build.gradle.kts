@@ -2,6 +2,9 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    id(libs.plugins.kotlin.ksp.get().pluginId)
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -45,11 +48,28 @@ android {
 }
 
 dependencies {
+    implementation(projects.common.android)
+    implementation(projects.common.kotlin)
+    implementation(projects.domain)
 
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation(libs.di.hilt.core)
+    kapt(libs.di.hilt.compiler)
+
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.datastore.pref)
+    implementation(libs.datastore.pref.core)
+
+    implementation(libs.kotlin.collections.immutable)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
 }
