@@ -57,7 +57,7 @@ class SignUpActivity : ComponentActivity() {
                             finishWithAnimation()
                         },
                         onNext = {
-                            vm.navigateNextStep()
+                            vm.navigateStep(SignUpStep.STEP2)
                         },
                     )
 
@@ -65,10 +65,10 @@ class SignUpActivity : ComponentActivity() {
                         state = state,
                         vm = vm,
                         onPrevious = {
-                            vm.navigateBackStep()
+                            vm.navigateStep(SignUpStep.STEP1)
                         },
                         onNext = {
-                            vm.navigateNextStep()
+                            vm.navigateStep(SignUpStep.STEP3)
                         },
                     )
 
@@ -76,10 +76,10 @@ class SignUpActivity : ComponentActivity() {
                         state = state,
                         vm = vm,
                         onPrevious = {
-                            vm.navigateBackStep()
+                            vm.navigateStep(SignUpStep.STEP2)
                         },
                         onNext = {
-                           // TODO
+                            // TODO
                         },
                     )
                 }

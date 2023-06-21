@@ -18,20 +18,8 @@ class SignUpViewModel @Inject constructor(
 
     override val container = container<SignUpState, SignUpSideEffect>(SignUpState())
 
-    fun navigateNextStep() = intent {
-        reduce {
-            state.copy(step = state.step + 1)
-        }
-    }
-
-    fun navigateBackStep() = intent {
-        if (state.step == SignUpStep.STEP1) {
-            postSideEffect(SignUpSideEffect.NavigateBack)
-            return@intent
-        }
-        reduce {
-            state.copy(step = state.step - 1)
-        }
+    fun navigateStep(step: SignUpStep) = intent {
+        reduce { state.copy(step = step) }
     }
 
     fun updateName(name: String) = intent {
