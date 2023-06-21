@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.saehyun.presentation.feature.login.SignInActivity
+import com.saehyun.presentation.feature.signup.SignUpActivity
 import com.saehyun.presentation.style.SMonkeyTheme
 import com.saehyun.presentation.util.startActivityWithAnimation
 
@@ -18,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        navigateToLogin()
+        navigateToSignUp()
         setContent {
             SMonkeyTheme {
 
@@ -28,5 +29,9 @@ class MainActivity : ComponentActivity() {
 
     private fun navigateToLogin() {
         startActivityWithAnimation<SignInActivity>()
+    }
+
+    private fun navigateToSignUp() {
+        startActivityWithAnimation<SignUpActivity>()
     }
 }
