@@ -30,20 +30,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.saehyun.common_kotlin.runIf
+import com.saehyun.domain.Writer
 import com.saehyun.presentation.R
 import com.saehyun.presentation.component.BigTopAppBar
 import com.saehyun.presentation.component.Spacer
+import com.saehyun.presentation.component.toSmonkeyCharacter
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody1
 import com.saehyun.presentation.style.SmonkeyBody10
 import com.saehyun.presentation.style.SmonkeyBody5
+import com.saehyun.presentation.style.SmonkeyBody7
 import com.saehyun.presentation.style.SmonkeyBody8
+import com.saehyun.presentation.style.SmonkeyBody9
 import com.saehyun.presentation.util.smonkeyClickable
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.jetbrains.annotations.Async
 import org.orbitmvi.orbit.compose.collectSideEffect
 import java.time.LocalDate
 
@@ -127,3 +133,4 @@ fun JournalScreen(
         }
     }
 }
+

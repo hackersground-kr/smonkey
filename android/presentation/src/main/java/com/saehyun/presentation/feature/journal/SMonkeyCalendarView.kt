@@ -1,5 +1,31 @@
 package com.saehyun.presentation.feature.journal
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.saehyun.common_kotlin.runIf
+import com.saehyun.presentation.R
+import com.saehyun.presentation.style.SmonkeyBody1
+import com.saehyun.presentation.style.SmonkeyBody8
+import com.saehyun.presentation.util.smonkeyClickable
+import kotlinx.collections.immutable.ImmutableList
+import java.time.LocalDate
+
 @Composable
 fun SMonkeyCalendarView(
     month: Int,
