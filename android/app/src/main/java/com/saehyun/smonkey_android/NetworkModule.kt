@@ -7,6 +7,8 @@ import com.saehyun.data.network.like.LikeAPI
 import com.saehyun.data.network.smoking.SmokingAPI
 import com.saehyun.data.network.smonkey.SMonkeyAPI
 import com.saehyun.data.network.user.UserAPI
+import com.saehyun.data.repository.TokenDataSource
+import com.saehyun.data.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -28,22 +31,22 @@ object NetworkModule {
     fun provideLogger(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(level = HttpLoggingInterceptor.Level.BODY)
 
-//    @Provides
-//    @Singleton
-//    fun provideTokenInterceptor(
-//        userRepository: UserRepository,
-//    ): TokenInterceptor =
-//        TokenInterceptor(userRepository)
+    @Provides
+    @Singleton
+    fun provideTokenInterceptor(
+        tokenDataSource: TokenDataSource,
+    ): TokenInterceptor =
+        TokenInterceptor(tokenDataSource)
 
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
-//        tokenInterceptor: TokenInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        tokenInterceptor: TokenInterceptor,
     ): OkHttpClient =
         synchronized(this) {
             OkHttpClient.Builder()
-//                .addInterceptor(tokenInterceptor)
+                .addInterceptor(tokenInterceptor)
                 .addInterceptor(httpLoggingInterceptor)
                 .build()
         }

@@ -11,6 +11,10 @@ data class SmonkeyResponse(
     val nextPoint: Int,
     @field:SerializedName("point")
     val point: Int,
+    @field:SerializedName("savePrice")
+    val savePrice: Int,
+    @field:SerializedName("smokingDates")
+    val smokingDates: SmokingDates,
     @field:SerializedName("smonkeyName")
     val smonkeyName: String,
     @field:SerializedName("step")

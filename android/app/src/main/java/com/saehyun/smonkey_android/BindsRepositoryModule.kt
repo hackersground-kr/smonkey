@@ -2,6 +2,8 @@ package com.saehyun.smonkey_android
 
 import com.saehyun.data.repository.SmonkeyRepository
 import com.saehyun.data.repository.SmonkeyRepositoryImpl
+import com.saehyun.data.repository.TokenDataSource
+import com.saehyun.data.repository.TokenDataSourceImpl
 import com.saehyun.data.repository.UserRepository
 import com.saehyun.data.repository.UserRepositoryImpl
 import dagger.Binds
@@ -25,4 +27,10 @@ abstract class BindsRepositoryModule {
     abstract fun bindsSMonkeyRepository(
         sMonkeyRepositoryImpl: SmonkeyRepositoryImpl
     ): SmonkeyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsTokenDataSourceImpl(
+        tokenDataSourceImpl: TokenDataSourceImpl
+    ): TokenDataSource
 }

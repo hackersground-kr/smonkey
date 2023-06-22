@@ -74,14 +74,17 @@ internal fun HomeScreen(
                 contentDescription = null,
             )
             Column {
-                SmonkeyBody5(text = state.username)
+                Row {
+                    SmonkeyBody5(text = state.username)
+                    SmonkeyBody8(text = "님의 스몽키")
+                }
                 Spacer(space = 4.dp)
-                SmonkeyBody8(text = "다음 단계까지 ${state.smonkey.nextPoint} 포인트")
+                SmonkeyBody8(text = "Level ${state.smonkey.level}. ${state.smonkey.smonkeyName}")
                 Spacer(space = 20.dp)
-                SmonkeyBody10(text = "얼마 안남았어요! 조금만 힘내요!")
+                SmonkeyBody10(text = "현재 포인트 ${state.smonkey.point} / 남은 포인트 ${state.smonkey.nextPoint - state.smonkey.point}")
                 Spacer(space = 8.dp)
                 LinearProgressIndicator(
-                    progress = 0.8f,
+                    progress = 0.8f, // TODO 계산 공식
                     color = SMonkeyColor.Main1,
                 )
             }
@@ -106,28 +109,28 @@ internal fun HomeScreen(
                 .padding(all = 16.dp),
         ) {
             SmonkeyBody3(
-                text = "장석연 님이",
+                text = "${state.username}님이",
                 color = SMonkeyColor.Gray100
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "금연한 시간",
-                description = "9일 14시간 13분 30초",
+                description = state.quitSmokingDate,
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "절약한 금액",
-                description = "11,300 원",
+                description = "${state.savePrice} 원",
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "흡연 기간",
-                description = "365일 15시간 1분 21초",
+                description = state.smokingDate,
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "소비 금액",
-                description = "441,500 원",
+                description = "${state.spendPrice} 원",
             )
             Spacer(space = 6.dp)
             Image(

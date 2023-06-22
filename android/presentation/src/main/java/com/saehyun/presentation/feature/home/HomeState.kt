@@ -5,6 +5,12 @@ data class HomeState(
     val selectedIndex: Int = 0,
     val smonkey: SMonkeyUser = SMonkeyUser.empty(),
     val username: String = "",
+
+    // 금연 관련 정보
+    val quitSmokingDate: String = "",
+    val smokingDate: String = "",
+    val savePrice: Int = 0,
+    val spendPrice: Int = 0,
 )
 
 data class SMonkeyUser(
