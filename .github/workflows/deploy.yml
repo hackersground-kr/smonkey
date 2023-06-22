@@ -20,11 +20,11 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
-      working-directory: ./app
+      working-directory: ./android
     
     - name: Build Debug APK
       run: ./gradlew assembleDebug
-      working-directory: ./app
+      working-directory: ./android
 
     - name: Upload APK to Artifacts
       uses: actions/upload-artifact@v2
