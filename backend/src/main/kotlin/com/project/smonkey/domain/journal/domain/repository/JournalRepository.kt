@@ -10,4 +10,6 @@ interface JournalRepository: JpaRepository<Journal, Long> {
 
     fun getByDate(date: LocalDate): Journal
 
+    fun findAllByDateBetween(date: LocalDate, date2: LocalDate): List<Journal?>
+
 }

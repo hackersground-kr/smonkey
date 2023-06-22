@@ -5,4 +5,5 @@ data class JournalResponse(
     val content: String,
     val date: String,
     val userName: String,
+    val smoking: Boolean
 )

@@ -34,7 +34,8 @@ class FindJournalService(
                 title = journal.title,
                 content = journal.content,
                 date = journal.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                userName = journal.author.name
+                userName = journal.author.name,
+                smoking = journal.smoking,
             )
         )
     }

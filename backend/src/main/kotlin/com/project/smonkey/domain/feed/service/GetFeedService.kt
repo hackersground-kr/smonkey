@@ -15,6 +15,7 @@ import com.project.smonkey.domain.user.facade.UserFacade
 import com.project.smonkey.global.extension.runIf
 import com.project.smonkey.global.payload.BaseResponse
 import org.springframework.stereotype.Service
+import java.time.format.DateTimeFormatter
 
 /**
  * [TODO]
@@ -73,7 +74,7 @@ class GetFeedService(
                 likeCount = likeCount,
                 isLike = isLike,
                 category = feed.category,
-                createdAt = feed.createdAt!!,
+                createdAt = feed.createdAt!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
             )
         )
     }
@@ -123,7 +124,7 @@ class GetFeedService(
                         likeCount = likeCount,
                         isLike = isLike,
                         category = feed.category,
-                        createdAt = feed.createdAt!!,
+                        createdAt = feed.createdAt!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                     )
                 }
             )

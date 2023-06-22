@@ -1,9 +1,11 @@
 package com.project.smonkey.domain.journal.presentation
 
 import com.project.smonkey.domain.journal.presentation.dto.request.CreateJournalRequest
+import com.project.smonkey.domain.journal.presentation.dto.response.JournalListResponse
 import com.project.smonkey.domain.journal.presentation.dto.response.JournalResponse
 import com.project.smonkey.domain.journal.service.CreateJournalService
 import com.project.smonkey.domain.journal.service.DeleteJournalService
+import com.project.smonkey.domain.journal.service.FindAllMonthJournalService
 import com.project.smonkey.domain.journal.service.FindJournalService
 import com.project.smonkey.global.payload.BaseResponse
 import io.swagger.annotations.Api
@@ -26,6 +28,7 @@ class JournalController(
     private val createJournalService: CreateJournalService,
     private val deleteJournalService: DeleteJournalService,
     private val findJournalService: FindJournalService,
+    private val findAllMonthJournalService: FindAllMonthJournalService
 ) {
 
     @ApiOperation(value = "금연 일지 작성하기")
@@ -52,6 +55,15 @@ class JournalController(
         @RequestParam("date") data: LocalDate
     ): BaseResponse<Unit> {
         return deleteJournalService.execute(data)
+    }
+
+    @ApiOperation(value = "금연 일지 월별로 가져오기")
+    @GetMapping("/month")
+    fun getDataByMonth(
+        @RequestParam("year") year: Int,
+        @RequestParam("month") month: Int,
+    ): BaseResponse<JournalListResponse> {
+        return findAllMonthJournalService.execute(year, month)
     }
 
 }

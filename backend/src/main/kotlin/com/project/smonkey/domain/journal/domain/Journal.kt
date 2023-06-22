@@ -17,6 +17,7 @@ class Journal(
     title: String,
     content: String,
     date: LocalDate,
+    smoking: Boolean,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
@@ -34,6 +35,9 @@ class Journal(
         protected set
 
     var date = date
+        protected set
+
+    var smoking = smoking
         protected set
 
     fun updateJournal(

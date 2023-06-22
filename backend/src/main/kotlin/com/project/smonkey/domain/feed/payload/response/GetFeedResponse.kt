@@ -1,7 +1,6 @@
 package com.project.smonkey.domain.feed.payload.response
 
 import com.project.smonkey.domain.feed.enum.FeedType
-import java.time.LocalDateTime
 
 data class GetFeedResponse(
     val writer: Writer,
@@ -11,7 +10,7 @@ data class GetFeedResponse(
     val likeCount: Int,
     val isLike: Boolean,
     val category: FeedType,
-    val createdAt: LocalDateTime,
+    val createdAt: String,
 ) {
     data class Writer(
         val userName: String,

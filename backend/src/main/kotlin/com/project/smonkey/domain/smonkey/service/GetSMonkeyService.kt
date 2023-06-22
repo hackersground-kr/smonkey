@@ -11,6 +11,7 @@ import com.project.smonkey.domain.smonkey.utils.Time
 import com.project.smonkey.domain.user.facade.UserFacade
 import com.project.smonkey.global.payload.BaseResponse
 import org.springframework.stereotype.Service
+import kotlin.math.abs
 
 @Service
 class GetSMonkeyService(
@@ -38,14 +39,17 @@ class GetSMonkeyService(
         val smokingMinute = smokingDate.getMinute(smokingDay, smokingHour)
         val smokingSecond = smokingDate.getSecond(smokingDay, smokingHour, smokingMinute)
 
+        val nextPoint = level.levelToNextMaxPoint()
+        val point = smonkey.point.pointToCurrentPoint()
         val getSMonkeyResponse = GetSMonkeyResponse(
             userName = user.name,
             smonkeyName = smonkey.name,
             backgroundColor = smonkey.backgroundColor,
             level = level,
             step = level.toStep(),
-            point = smonkey.point.pointToCurrentPoint(),
-            nextPoint = level.levelToNextMaxPoint(),
+            point = point,
+            nextPoint = nextPoint,
+            percentage = ((abs(nextPoint - point) / nextPoint)).toDouble(),
             savePrice = smonkey.savePrice,
             spendPrice = smonkey.spendPrice,
             smokingDates = SMonkeyTimeResponse(
