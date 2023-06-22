@@ -10,7 +10,8 @@ import com.saehyun.presentation.component.Spacer
 fun SignUpSecondScreen(
     modifier: Modifier = Modifier,
     state: SignUpState,
-    vm: SignUpViewModel,
+    updateEmail: (String) -> Unit,
+    updateVerifyCode: (String) -> Unit,
     onPrevious: () -> Unit,
     onNext: () -> Unit,
 ) {
@@ -25,17 +26,13 @@ fun SignUpSecondScreen(
         Spacer(space = 80.dp)
         SMonkeyTextField(
             value = state.email,
-            onValueChange = { email ->
-                vm.updateEmail(email)
-            },
+            onValueChange = updateEmail,
             hint = "이메일",
         )
         Spacer(space = 16.dp)
         SMonkeyTextField(
             value = state.verifyCode,
-            onValueChange = { verifyCode ->
-                vm.updateVerifyCode(verifyCode)
-            },
+            onValueChange = updateVerifyCode,
             hint = "인증 코드",
         )
     }

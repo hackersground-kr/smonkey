@@ -1,6 +1,7 @@
 package com.saehyun.presentation.feature.login
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -23,8 +24,11 @@ import com.saehyun.presentation.R
 import com.saehyun.presentation.component.SMonkeyLargeButton
 import com.saehyun.presentation.component.SMonkeyTextField
 import com.saehyun.presentation.component.Spacer
+import com.saehyun.presentation.feature.home.HomeActivity
 import com.saehyun.presentation.style.SMonkeyTheme
 import com.saehyun.presentation.style.SmonkeyBody10
+import com.saehyun.presentation.util.ToastWrapper
+import com.saehyun.presentation.util.startActivityWithAnimation
 import dagger.hilt.android.AndroidEntryPoint
 import org.orbitmvi.orbit.viewmodel.observe
 import javax.inject.Inject
@@ -49,20 +53,31 @@ class SignInActivity : ComponentActivity() {
                     state = state,
                     onIdChanged = vm::updateId,
                     onPasswordChanged = vm::updatePassword,
-                    onClickLogin = {
-                    }
+                    onClickLogin = vm::signIn
                 )
             }
         }
     }
 
     private fun handleSideEffect(sideEffect: SignInSideEffect) {
+        when (sideEffect) {
+            is SignInSideEffect.SendMessage -> {
+                Toast.makeText(this, sideEffect.message, Toast.LENGTH_SHORT).show()
+            }
 
+            is SignInSideEffect.NavigateToHome -> {
+                navigateToHome()
+            }
+        }
+    }
+
+    private fun navigateToHome() {
+        startActivityWithAnimation<HomeActivity>() // TODO singleTOP
     }
 }
 
 @Composable
-fun SignInScreen(
+private fun SignInScreen(
     modifier: Modifier = Modifier,
     state: SignInState,
     onIdChanged: (String) -> Unit,

@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.gson)
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.gson)
 
     implementation(libs.core.ktx)

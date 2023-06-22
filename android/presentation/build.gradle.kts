@@ -54,7 +54,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.domain)
+    implementation(projects.data)
     implementation(projects.common.android)
     implementation(projects.common.kotlin)
 
@@ -67,6 +67,10 @@ dependencies {
 
     implementation(libs.orbit.compose)
     implementation(libs.orbit.viewmodel)
+
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)

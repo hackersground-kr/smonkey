@@ -26,6 +26,8 @@ import com.saehyun.presentation.style.SMonkeyColor.Gray400
 import com.saehyun.presentation.style.SMonkeyIcon
 import com.saehyun.presentation.style.SmonkeyBody10
 import com.saehyun.presentation.style.SmonkeyBody3
+import com.saehyun.presentation.style.SmonkeyBody4
+import com.saehyun.presentation.style.SmonkeyBody6
 import com.saehyun.presentation.style.SmonkeyBody9
 import com.saehyun.presentation.style.SmonkeyTextStyle
 
@@ -98,7 +100,7 @@ fun SMonkeyTextField(
                     textStyle = SmonkeyTextStyle.Body6,
                     decorationBox = { innerTextField ->
                         if (value.isEmpty() && hint != null) {
-                            SmonkeyBody3(text = hint, color = Gray400)
+                            SmonkeyBody6(text = hint, color = Gray400)
                         }
 
                         innerTextField()

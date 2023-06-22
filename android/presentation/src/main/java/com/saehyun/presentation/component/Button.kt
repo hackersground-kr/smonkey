@@ -1,6 +1,7 @@
 package com.saehyun.presentation.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,6 +45,40 @@ fun SMonkeyLargeButton(
         SmonkeyBody5(
             text = text,
             color = SMonkeyColor.White,
+        )
+    }
+}
+
+@Composable
+fun SMonkeyOutlineLargeButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
+    val backgroundColor = if (enabled) SMonkeyColor.Main1 else SMonkeyColor.Main3
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(44.dp)
+            .smonkeyClickable(
+                rippleEnabled = enabled,
+            ) {
+                if (enabled) {
+                    onClick()
+                }
+            }
+            .border(
+                shape = RoundedCornerShape(12.dp),
+                color = backgroundColor,
+                width = 1.dp
+            ),
+        contentAlignment = Alignment.Center,
+    ) {
+        SmonkeyBody5(
+            text = text,
+            color = backgroundColor,
         )
     }
 }
