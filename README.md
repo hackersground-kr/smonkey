@@ -101,8 +101,8 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
 
           - name: Build with Gradle
             run: |
-                chmod +x ./server/gradlew
-                ./server/gradlew clean build
+                chmod +x ./backend/gradlew
+                ./backend/gradlew clean build
 
           - name: Upload artifact for deployment job
             uses: actions/upload-artifact@v2
