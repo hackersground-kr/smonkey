@@ -7,7 +7,6 @@ import com.saehyun.data.network.like.LikeAPI
 import com.saehyun.data.network.smoking.SmokingAPI
 import com.saehyun.data.network.smonkey.SMonkeyAPI
 import com.saehyun.data.network.user.UserAPI
-import com.saehyun.data.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +21,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://smonkey.azurewebsites.net:443"
+    private const val BASE_URL = BuildConfig.BASE_URL
 
     @Provides
     @Singleton
@@ -39,7 +38,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
 //        tokenInterceptor: TokenInterceptor,
     ): OkHttpClient =
         synchronized(this) {
@@ -52,7 +51,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: OkHttpClient,
+        okHttpClient: OkHttpClient
     ): Retrofit =
         synchronized(this) {
             Retrofit.Builder()
@@ -79,7 +78,6 @@ object NetworkModule {
     fun provideFeedAPI(retrofit: Retrofit): FeedAPI = synchronized(this) {
         retrofit.create(FeedAPI::class.java)
     }
-
 
     @Provides
     @Singleton

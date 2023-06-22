@@ -6,7 +6,6 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
-import javax.inject.Inject
 
 class TokenInterceptor(
     private val userRepository: UserRepository

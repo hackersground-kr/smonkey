@@ -18,9 +18,9 @@ object ProvideContext {
     @Provides
     fun provideUserRepository(
         userAPI: UserAPI,
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ): UserRepositoryImpl = UserRepositoryImpl(
         userAPI = userAPI,
-        context = context,
+        context = context
     )
 }

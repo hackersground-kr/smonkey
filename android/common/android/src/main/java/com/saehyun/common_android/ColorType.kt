@@ -22,5 +22,5 @@ enum class ColorType {
     Violet,
     Orchid,
     Purple,
-    Navy,
+    Navy
 }

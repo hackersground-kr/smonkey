@@ -1,3 +1,5 @@
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.application)
@@ -6,6 +8,10 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
+
+val properties: Properties =  Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
 
 android {
     namespace = "com.saehyun.smonkey_android"
@@ -22,6 +28,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "BASE_URL", properties["BASE_URL"].toString())
     }
 
     buildTypes {
@@ -41,6 +48,7 @@ android {
         jvmTarget = Application.jvmTarget
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -57,6 +65,7 @@ android {
 }
 
 dependencies {
+
     implementation(projects.presentation)
     implementation(projects.domain)
     implementation(projects.data)

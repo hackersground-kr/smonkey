@@ -20,6 +20,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.saehyun.presentation.component.SMonkeyHorizontalPagerIndicator
 import com.saehyun.presentation.component.SMonkeyLargeButton
 import com.saehyun.presentation.component.SMonkeyOutlineLargeButton
@@ -34,10 +37,17 @@ import com.saehyun.presentation.util.startActivityWithAnimation
 import com.saehyun.presentation.util.systemBarPaddings
 import okhttp3.internal.immutableListOf
 
+
 class IntroActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCenter.start(
+            application,
+            BuildConfig.APP_SECRET,
+            Analytics::class.java, Crashes::class.java
+        )
 
         setContent {
             SMonkeyTheme {
