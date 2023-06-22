@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 fun SMonkeySimpleLayout(
     topAppBar: @Composable () -> Unit,
     content: @Composable ColumnScope.() -> Unit,
-    bottomContent: @Composable () -> Unit,
+    bottomContent: (@Composable () -> Unit)? = null,
 ) {
     val scrollState = rememberScrollState()
 
@@ -39,7 +39,7 @@ fun SMonkeySimpleLayout(
             modifier = Modifier
                 .align(Alignment.BottomCenter),
         ) {
-            bottomContent()
+            bottomContent?.let { it() }
         }
     }
 }

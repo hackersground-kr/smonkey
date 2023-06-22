@@ -13,6 +13,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.saehyun.data.network.feed.Writer
@@ -52,7 +53,12 @@ fun FriendScreen() {
             },
         )
         Spacer(space = 12.dp)
-
+        Image(
+            modifier = Modifier.fillMaxWidth(),
+            painter = painterResource(id = R.drawable.bg_friend),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+        )
     }
 }
 

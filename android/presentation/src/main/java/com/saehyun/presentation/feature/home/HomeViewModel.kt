@@ -60,8 +60,8 @@ class HomeViewModel @Inject constructor(
                     username = entity.userName,
                     quitSmokingDate = quitSmokingDate,
                     smokingDate = smokingDate,
-                    savePrice = state.savePrice,
-                    spendPrice = state.spendPrice,
+                    savePrice = entity.savePrice,
+                    spendPrice = entity.spendPrice,
                 )
             }
         }.onFailure { exception ->

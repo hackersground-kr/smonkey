@@ -18,6 +18,9 @@ import com.saehyun.presentation.feature.community.CommunityViewModel
 import com.saehyun.presentation.feature.journal.JournalScreen
 import com.saehyun.presentation.feature.journal.JournalViewModel
 import com.saehyun.presentation.feature.journal.write.WriteJournalActivity
+import com.saehyun.presentation.feature.setting.SettingScreen
+import com.saehyun.presentation.feature.setting.SettingViewModel
+import com.saehyun.presentation.friend.FriendScreen
 import com.saehyun.presentation.util.startActivityWithAnimation
 import dagger.hilt.android.AndroidEntryPoint
 import org.orbitmvi.orbit.viewmodel.observe
@@ -28,6 +31,7 @@ class HomeActivity : ComponentActivity() {
     private val homeVM: HomeViewModel by viewModels()
     private val journalVM: JournalViewModel by viewModels()
     private val communityVM: CommunityViewModel by viewModels()
+    private val settingVM: SettingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +58,8 @@ class HomeActivity : ComponentActivity() {
 
                         1 -> JournalScreen(vm = journalVM)
                         2 -> CommunityScreen(vm = communityVM)
+                        3 -> FriendScreen()
+                        4 -> SettingScreen(settingVM)
                     }
                 }
                 SMonkeyBottomNavigation(

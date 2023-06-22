@@ -40,6 +40,10 @@ fun CommunityScreen(
 ) {
     val state = vm.container.stateFlow.collectAsState().value
 
+    LaunchedEffect(Unit) {
+        vm.getFeeds()
+    }
+
     LaunchedEffect(key1 = vm) {
         fun handleSideEffect(sideEffect: CommunitySideEffect) {
 

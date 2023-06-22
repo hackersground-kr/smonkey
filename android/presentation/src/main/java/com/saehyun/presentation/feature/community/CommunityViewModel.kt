@@ -40,7 +40,7 @@ class CommunityViewModel @Inject constructor(
             }
             reduce { state.copy(feeds = feeds.toPersistentList()) }
         }.onFailure { exception ->
-
+            exception.printStackTrace()
         }
     }
 }

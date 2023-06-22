@@ -13,6 +13,8 @@ data class SmonkeyResponse(
     val point: Int,
     @field:SerializedName("savePrice")
     val savePrice: Int,
+    @field:SerializedName("spendPrice")
+    val spendPrice: Int,
     @field:SerializedName("smokingDates")
     val smokingDates: SmokingDates,
     @field:SerializedName("smonkeyName")

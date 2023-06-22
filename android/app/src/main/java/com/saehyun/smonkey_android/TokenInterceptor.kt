@@ -14,12 +14,17 @@ class TokenInterceptor @Inject constructor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest: Request = chain.request()
+
+        if (originalRequest.url.encodedPath == "/user/signin") {
+            return chain.proceed(request = chain.request())
+        }
+
         val token = runBlocking {
             tokenDataSource.getToken().first()
         } // TokenRepository에서 토큰을 가져옵니다.
 
         val requestBuilder: Request.Builder = originalRequest.newBuilder()
-            .header("Authorization", "Bearer $token")
+            .header("Authorization", token)
             .method(originalRequest.method, originalRequest.body)
 
         val request: Request = requestBuilder.build()
