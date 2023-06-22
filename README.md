@@ -49,10 +49,7 @@ $ scoop install gh
 #### 순서
 
 1. 자신의 깃허브 계정으로 이 레포지토리를 포크합니다.
-```
-git clone https://github.com/hackersground-kr/smonkey
-```
-3. 아래 순서대로 Microsoft Azure 리소스를 생성합니다.
+2. 아래 순서대로 Microsoft Azure 리소스를 생성합니다.
 ```
 az login
 
