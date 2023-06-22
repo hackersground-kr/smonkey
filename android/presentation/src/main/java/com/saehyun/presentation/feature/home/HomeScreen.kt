@@ -32,6 +32,7 @@ import com.saehyun.presentation.style.SmonkeyBody8
 @Composable
 internal fun HomeScreen(
     modifier: Modifier = Modifier,
+    state: HomeState,
 ) {
     Column(
         modifier = modifier
@@ -73,9 +74,9 @@ internal fun HomeScreen(
                 contentDescription = null,
             )
             Column {
-                SmonkeyBody5(text = "장석연님")
+                SmonkeyBody5(text = state.username)
                 Spacer(space = 4.dp)
-                SmonkeyBody8(text = "다음 단계까지 D-10")
+                SmonkeyBody8(text = "다음 단계까지 ${state.smonkey.nextPoint} 포인트")
                 Spacer(space = 20.dp)
                 SmonkeyBody10(text = "얼마 안남았어요! 조금만 힘내요!")
                 Spacer(space = 8.dp)

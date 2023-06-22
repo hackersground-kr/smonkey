@@ -10,39 +10,31 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saehyun.presentation.component.SMonkeyHorizontalPagerIndicator
 import com.saehyun.presentation.component.SMonkeyLargeButton
 import com.saehyun.presentation.component.SMonkeyOutlineLargeButton
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.component.toSmonkeyCharacter
-import com.saehyun.presentation.feature.home.HomeActivity
 import com.saehyun.presentation.feature.login.SignInActivity
 import com.saehyun.presentation.feature.signup.SignUpActivity
 import com.saehyun.presentation.style.SMonkeyTheme
 import com.saehyun.presentation.style.SmonkeyBody3
 import com.saehyun.presentation.style.SmonkeyBody4
-import com.saehyun.presentation.style.SmonkeyBody5
 import com.saehyun.presentation.util.startActivityWithAnimation
 import com.saehyun.presentation.util.systemBarPaddings
 import okhttp3.internal.immutableListOf
 
-class MainActivity : ComponentActivity() {
+class IntroActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

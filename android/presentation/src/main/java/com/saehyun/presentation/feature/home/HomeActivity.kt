@@ -36,7 +36,7 @@ class HomeActivity : ComponentActivity() {
             ) {
                 Crossfade(targetState = state.selectedIndex, label = "") { index ->
                     when (index) {
-                        0 -> HomeScreen()
+                        0 -> HomeScreen(vm = homeVM)
                         1 -> JournalScreen(vm = journalVM)
                         2 -> CommunityScreen(vm = communityVM)
                     }
