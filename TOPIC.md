@@ -26,4 +26,4 @@
 
 ## 제품 소개 동영상
 
-[소개 영상]()
+[유튜브](https://www.youtube.com/watch?v=r6m2N6gnihk)
