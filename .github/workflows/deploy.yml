@@ -42,8 +42,7 @@ jobs:
     - name: Upload to App Center
       uses: wzieba/AppCenter-Github-Action@v1
       with:
-        appCenterToken: ${{ secrets.APP_CENTER_TOKEN }}
-        ownerName: skeat
-        appName: SMonkey
-        apkPath: android/app/build/outputs/apk/debug/app-debug.apk # 빌드된 APK 파일의 경로
+        token: ${{ secrets.APP_CENTER_TOKEN }}
+        appName: skeat/SMonkey
+        file: android/app/build/outputs/apk/debug/app-debug.apk # 빌드된 APK 파일의 경로
         group: Collaborators # 배포할 그룹의 이름
