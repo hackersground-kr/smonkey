@@ -43,6 +43,13 @@
     - `Add new API token`을 눌러 토큰을 발급합니다.
     - `해당 토큰`은 추후에 활용하기 위해 `기억`합니다.
 
+### App Center에서 App의 테스트 그룹을 설정하기
+
+- 앱을 배포 대상을 정의하기 위해 배포 그룹(배포 대상)을 정의해야 합니다.
+- [AppCenters](https://appcenter.ms/apps)에 접속하여 좌측 메뉴의 `Distribute → Groups`로 접근해주세요.
+- 새로운 테스트 그룹을 기존의 그룹(Collaborators)를 이용할 수 있습니다.
+- 추후 배포할 `테스트 그룹의 이름`이 필요하므로 `기억` 합니다.
+
 ### Github Secret 설정하기
 
 - fork한 repository의 Settings 를 진입합니다.
