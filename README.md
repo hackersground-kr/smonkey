@@ -16,7 +16,7 @@
 <!-- 위 링크는 지우지 마세요 -->
 
 ### 슬라이드
-[발표자료](./decks/스몽키 ppt.pdf)
+[발표자료](./decks/smonkey.pdf)
 
 ### 디자인
 [피그마](https://www.figma.com/proto/7i65sbmulZZHUVWv6EH4Wa/%F0%9F%90%92-HACKERSGROUND?page-id=0%3A1&type=design&node-id=23-5315&viewport=116%2C-644%2C0.09&scaling=contain&starting-point-node-id=23%3A5315&show-proto-sidebar=1&mode=design)
