@@ -22,8 +22,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        buildConfigField("String", "APP_SECRET", properties["APP_SECRET"].toString())
     }
 
     buildTypes {
@@ -62,10 +60,6 @@ android {
 }
 
 dependencies {
-    val appCenterSdkVersion = "5.0.0"
-    implementation("com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion")
-    implementation("com.microsoft.appcenter:appcenter-crashes:$appCenterSdkVersion")
-
     implementation(projects.data)
     implementation(projects.common.android)
     implementation(projects.common.kotlin)
