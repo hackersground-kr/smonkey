@@ -125,6 +125,8 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
    - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 MySQL에서 smonkey-db라는 이름으로 생성된 데이터베이스를 선택하고 데이터베이스의 서버 이름과 서버 관리자 로그인 이름을 복사합니다.
    - 복사한 서버 이름과 서버 관리자 로그인 이름을 다음 application.yml에 넣기 위해 가지고 있습니다.
    - MySQL 왼쪽 메뉴바에 네트워킹으로 들어가 젤 아래의 방화벽 규칙을 확인합니다.
+  
+     
      <img width="299" alt="image" src="https://github.com/hackersground-kr/smonkey/assets/81136764/5a1e97bf-84c9-4d2e-8ca7-0b8a65c0f1b4">
    - 위의 사진과 같은 주소가 존재하지 않다면 [+ 0.0.0.0 - 255.255.255.255 추가] 를 클릭합니다.
    - 이후 위부분의 저장 버튼을 클릭합니다.
