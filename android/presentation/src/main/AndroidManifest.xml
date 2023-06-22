@@ -25,6 +25,9 @@
             android:exported="false"
             android:theme="@style/Theme.SMonkey"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".feature.journal.write.WriteJournalActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SMonkey" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">

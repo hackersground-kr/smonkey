@@ -17,6 +17,10 @@ class HomeViewModel @Inject constructor(
 
     override val container = container<HomeState, HomeSideEffect>(HomeState())
 
+    fun navigateToWriteJournal() = intent {
+        postSideEffect(HomeSideEffect.NavigateToWriteJournal)
+    }
+
     fun getSmonkey() = intent {
         kotlin.runCatching {
             smonkeyRepository.getSmonkey()

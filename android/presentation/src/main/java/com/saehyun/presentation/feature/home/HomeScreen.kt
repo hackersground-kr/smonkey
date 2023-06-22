@@ -33,6 +33,7 @@ import com.saehyun.presentation.style.SmonkeyBody8
 internal fun HomeScreen(
     modifier: Modifier = Modifier,
     state: HomeState,
+    navigateToWriteJournal: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -95,7 +96,7 @@ internal fun HomeScreen(
             text = "금연 기록하기",
             enabled = true,
         ) {
-
+            navigateToWriteJournal()
         }
         Spacer(space = 16.dp)
         Column(

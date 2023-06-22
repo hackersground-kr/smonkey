@@ -17,6 +17,8 @@ import com.saehyun.presentation.feature.community.CommunityScreen
 import com.saehyun.presentation.feature.community.CommunityViewModel
 import com.saehyun.presentation.feature.journal.JournalScreen
 import com.saehyun.presentation.feature.journal.JournalViewModel
+import com.saehyun.presentation.feature.journal.write.WriteJournalActivity
+import com.saehyun.presentation.util.startActivityWithAnimation
 import dagger.hilt.android.AndroidEntryPoint
 import org.orbitmvi.orbit.viewmodel.observe
 
@@ -43,7 +45,13 @@ class HomeActivity : ComponentActivity() {
             ) {
                 Crossfade(targetState = state.selectedIndex, label = "") { index ->
                     when (index) {
-                        0 -> HomeScreen(state = state)
+                        0 -> HomeScreen(
+                            state = state,
+                            navigateToWriteJournal = {
+                                homeVM.navigateToWriteJournal()
+                            },
+                        )
+
                         1 -> JournalScreen(vm = journalVM)
                         2 -> CommunityScreen(vm = communityVM)
                     }
@@ -66,6 +74,10 @@ class HomeActivity : ComponentActivity() {
         when (sideEffect) {
             is HomeSideEffect.SendMessage -> {
                 Toast.makeText(this, sideEffect.message, Toast.LENGTH_SHORT).show()
+            }
+
+            is HomeSideEffect.NavigateToWriteJournal -> {
+                startActivityWithAnimation<WriteJournalActivity>()
             }
         }
     }
