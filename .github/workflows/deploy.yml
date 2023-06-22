@@ -38,5 +38,5 @@ jobs:
         appCenterToken: ${{ secrets.APP_CENTER_TOKEN }}
         ownerName: skeat
         appName: SMonkey
-        apkPath: app/build/outputs/apk/debug/app-debug.apk # 빌드된 APK 파일의 경로
+        apkPath: android/app/build/outputs/apk/debug/app-debug.apk # 빌드된 APK 파일의 경로
         group: Collaborators # 배포할 그룹의 이름
