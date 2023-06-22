@@ -1,5 +1,6 @@
 package com.saehyun.smonkey_android
 
+import com.saehyun.data.network.smonkey.SMonkeyAPI
 import com.saehyun.data.network.user.UserAPI
 import dagger.Module
 import dagger.Provides
@@ -50,5 +51,11 @@ object NetworkModule {
     @Singleton
     fun provideUserAPI(retrofit: Retrofit): UserAPI = synchronized(this) {
         retrofit.create(UserAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun smonkeyAPI(retrofit: Retrofit): SMonkeyAPI = synchronized(this) {
+        retrofit.create(SMonkeyAPI::class.java)
     }
 }

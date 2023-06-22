@@ -2,6 +2,7 @@ package com.saehyun.presentation.feature.signup
 
 import androidx.lifecycle.ViewModel
 import com.saehyun.data.network.user.SignUpRequest
+import com.saehyun.data.repository.SmonkeyRepository
 import com.saehyun.data.repository.UserRepository
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
