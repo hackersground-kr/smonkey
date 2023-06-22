@@ -1,10 +1,17 @@
 package com.saehyun.presentation.feature.signup
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.saehyun.presentation.component.SMonkeyCheckBox
 import com.saehyun.presentation.component.SMonkeyTextField
 import com.saehyun.presentation.component.Spacer
+import okhttp3.internal.immutableListOf
 
 @Composable
 fun SignUpThirdScreen(
@@ -14,6 +21,7 @@ fun SignUpThirdScreen(
     onPrevious: () -> Unit,
     onNext: () -> Unit,
 ) {
+    val selectIndex = remember { mutableStateOf(SmokingCessationReason.FAMILY_LOVED_ONES) }
     BaseSignUpScreen(
         modifier = modifier,
         index = 3,
@@ -22,21 +30,21 @@ fun SignUpThirdScreen(
         onPrevious = onPrevious,
         onNext = onNext,
     ) {
-        Spacer(space = 80.dp)
-        SMonkeyTextField(
-            value = state.email,
-            onValueChange = { email ->
-                vm.updateEmail(email)
-            },
-            hint = "이메일",
-        )
-        Spacer(space = 16.dp)
-        SMonkeyTextField(
-            value = state.verifyCode,
-            onValueChange = { verifyCode ->
-                vm.updateVerifyCode(verifyCode)
-            },
-            hint = "인증 코드",
-        )
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            item {
+                Spacer(space = 30.dp)
+            }
+            items(SmokingCessationReason.values()) { reason ->
+                SignUpCheckBox(
+                    visible = selectIndex.value == reason,
+                    reason = reason,
+                    onClick = {
+                        selectIndex.value = reason
+                    },
+                )
+            }
+        }
     }
 }

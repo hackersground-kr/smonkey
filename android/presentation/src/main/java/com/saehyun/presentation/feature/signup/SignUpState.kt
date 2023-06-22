@@ -1,5 +1,8 @@
 package com.saehyun.presentation.feature.signup
 
+import javax.annotation.concurrent.Immutable
+
+@Immutable
 data class SignUpState(
     val isLoading: Boolean = false,
     val step: SignUpStep = SignUpStep.STEP1,
@@ -9,6 +12,7 @@ data class SignUpState(
     val id: String = "",
     val password: String = "",
     val passwordCheck: String = "",
+    val age: String = "",
 
     // 회원가입 2단계
     val email: String = "",

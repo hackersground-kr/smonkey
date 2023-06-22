@@ -1,18 +1,23 @@
 package com.saehyun.presentation.feature.signup
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.saehyun.presentation.component.InnerTextBox
 import com.saehyun.presentation.component.SMonkeyLargeButton
+import com.saehyun.presentation.component.SMonkeySimpleLayout
 import com.saehyun.presentation.component.SMonkeyTextField
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.component.TopAppBar
@@ -42,6 +48,9 @@ class SignUpActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         setContent {
             val state = vm.container.stateFlow.collectAsState().value
 
@@ -52,24 +61,29 @@ class SignUpActivity : ComponentActivity() {
                 when (step) {
                     SignUpStep.STEP1 -> SignUpFirstScreen(
                         state = state,
-                        vm = vm,
                         onPrevious = {
                             finishWithAnimation()
                         },
                         onNext = {
                             vm.navigateStep(SignUpStep.STEP2)
                         },
+                        updateAge = vm::updateAge,
+                        updateId = vm::updateId,
+                        updateName = vm::updateName,
+                        updatePassword = vm::updatePassword,
+                        updatePasswordCheck = vm::updatePasswordCheck
                     )
 
                     SignUpStep.STEP2 -> SignUpSecondScreen(
                         state = state,
-                        vm = vm,
                         onPrevious = {
                             vm.navigateStep(SignUpStep.STEP1)
                         },
                         onNext = {
                             vm.navigateStep(SignUpStep.STEP3)
                         },
+                        updateEmail = vm::updateEmail,
+                        updateVerifyCode = vm::updateVerifyCode,
                     )
 
                     SignUpStep.STEP3 -> SignUpThirdScreen(
@@ -79,7 +93,7 @@ class SignUpActivity : ComponentActivity() {
                             vm.navigateStep(SignUpStep.STEP2)
                         },
                         onNext = {
-                            // TODO
+                            vm.signUp()
                         },
                     )
                 }
@@ -107,55 +121,59 @@ fun BaseSignUpScreen(
     maxIndex: Int,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(systemBarPaddings)
-            .padding(horizontal = 30.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        TopAppBar(
-            leadingContent = {
-                Image(
-                    modifier = Modifier.smonkeyClickable {
-                        onPrevious()
-                    },
-                    painter = painterResource(id = SMonkeyIcon.Back),
-                    contentDescription = null,
+    SMonkeySimpleLayout(
+        topAppBar = {
+            TopAppBar(
+                leadingContent = {
+                    Image(
+                        modifier = Modifier.smonkeyClickable {
+                            onPrevious()
+                        },
+                        painter = painterResource(id = SMonkeyIcon.Back),
+                        contentDescription = null,
+                    )
+                },
+                centerContent = {
+                    SmonkeyBody3(text = "회원가입")
+                }
+            )
+        },
+        content = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Spacer(space = 16.dp)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    if (index == 1) Spacer(modifier = Modifier.weight(1f)) else Divider(
+                        modifier = Modifier.weight(1f),
+                        color = SMonkeyColor.Gray300,
+                    )
+                    InnerTextBox(text = index.toString())
+                    if (index == maxIndex) Spacer(modifier = Modifier.weight(1f)) else Divider(
+                        modifier = Modifier.weight(1f),
+                        color = SMonkeyColor.Gray300,
+                    )
+                }
+                Spacer(space = 34.dp)
+                SmonkeyBody3(
+                    text = title,
+                    align = TextAlign.Center,
                 )
-            },
-            centerContent = {
-                SmonkeyBody3(text = "회원가입")
+                content()
             }
-        )
-        Spacer(space = 34.dp)
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            if (index == 1) Spacer(modifier = Modifier.weight(1f)) else Divider(
-                modifier = Modifier.weight(1f),
-                color = SMonkeyColor.Gray300,
-            )
-            InnerTextBox(text = index.toString())
-            if (index == maxIndex) Spacer(modifier = Modifier.weight(1f)) else Divider(
-                modifier = Modifier.weight(1f),
-                color = SMonkeyColor.Gray300,
-            )
+        },
+        bottomContent = {
+            SMonkeyLargeButton(
+                modifier = Modifier
+                    .imePadding(),
+                text = "다음",
+                enabled = true,
+            ) {
+                onNext()
+            }
         }
-        Spacer(space = 34.dp)
-        SmonkeyBody3(
-            text = title,
-            align = TextAlign.Center,
-        )
-        content()
-        Spacer(weight = 1f)
-        SMonkeyLargeButton(
-            modifier = Modifier.imePadding(),
-            text = "다음",
-            enabled = true,
-        ) {
-            onNext()
-        }
-        Spacer(space = 54.dp)
-    }
+    )
 }
