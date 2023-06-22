@@ -4,24 +4,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.saehyun.presentation.component.SMonkeyCheckBox
-import com.saehyun.presentation.component.SMonkeyTextField
 import com.saehyun.presentation.component.Spacer
-import okhttp3.internal.immutableListOf
 
 @Composable
 fun SignUpThirdScreen(
     modifier: Modifier = Modifier,
-    state: SignUpState,
-    vm: SignUpViewModel,
+    selectedReason: SmokingCessationReason,
+    onReasonChanged: (SmokingCessationReason) -> Unit,
     onPrevious: () -> Unit,
     onNext: () -> Unit,
 ) {
-    val selectIndex = remember { mutableStateOf(SmokingCessationReason.FAMILY_LOVED_ONES) }
     BaseSignUpScreen(
         modifier = modifier,
         index = 3,
@@ -36,12 +30,12 @@ fun SignUpThirdScreen(
             item {
                 Spacer(space = 30.dp)
             }
-            items(SmokingCessationReason.values()) { reason ->
+            items(SmokingCessationReason.values()) { item ->
                 SignUpCheckBox(
-                    visible = selectIndex.value == reason,
-                    reason = reason,
+                    visible = selectedReason == item,
+                    reason = item,
                     onClick = {
-                        selectIndex.value = reason
+                       onReasonChanged(item)
                     },
                 )
             }

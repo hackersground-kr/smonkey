@@ -1,3 +1,5 @@
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.library)
@@ -5,6 +7,9 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
+val properties: Properties =  Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
 android {
     namespace = "com.saehyun.presentation"
     compileSdk = Application.compileSdk
@@ -17,6 +22,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "APP_SECRET", properties["APP_SECRET"].toString())
     }
 
     buildTypes {
@@ -41,6 +48,7 @@ android {
         )
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -54,6 +62,10 @@ android {
 }
 
 dependencies {
+    val appCenterSdkVersion = "5.0.0"
+    implementation("com.microsoft.appcenter:appcenter-analytics:$appCenterSdkVersion")
+    implementation("com.microsoft.appcenter:appcenter-crashes:$appCenterSdkVersion")
+
     implementation(projects.data)
     implementation(projects.common.android)
     implementation(projects.common.kotlin)

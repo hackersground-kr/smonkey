@@ -3,6 +3,8 @@ package com.saehyun.presentation.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,7 +16,42 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody5
+import com.saehyun.presentation.style.SmonkeyBody6
 import com.saehyun.presentation.util.smonkeyClickable
+
+@Composable
+fun SmonkeyTextFieldButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
+    val backgroundColor = if (enabled) SMonkeyColor.Gray200 else SMonkeyColor.Gray200
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(48.dp)
+            .smonkeyClickable(
+                rippleEnabled = enabled,
+            ) {
+                if (enabled) {
+                    onClick()
+                }
+            }
+            .background(
+                shape = RoundedCornerShape(12.dp),
+                color = backgroundColor,
+            ),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Spacer(space = 12.dp)
+        SmonkeyBody6(
+            text = text,
+            color = SMonkeyColor.Black,
+        )
+    }
+}
 
 @Composable
 fun SMonkeyLargeButton(

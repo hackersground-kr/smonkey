@@ -7,12 +7,11 @@ plugins {
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.ksp) apply false
-    alias(libs.plugins.code.ktlint) apply false
 }
 
 allprojects {
     apply {
-        plugin("org.jlleitschuh.gradle.ktlint")
+//        plugin("org.jlleitschuh.gradle.ktlint")
     }
 }
 true // Needed to make the Suppress annotation work for the plugins block

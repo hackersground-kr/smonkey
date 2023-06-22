@@ -5,9 +5,11 @@ import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.saehyun.data.local.datastore
+import com.saehyun.data.local.extension.fetchStringPreference
 import com.saehyun.data.network.user.SignInRequest
 import com.saehyun.data.network.user.SignUpRequest
 import com.saehyun.data.network.user.UserAPI
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -25,6 +27,9 @@ class UserRepositoryImpl @Inject constructor(
             saveToken(accessToken, refreshToken)
         }
     }
+
+    override suspend fun getToken(): Flow<String> =
+        context.fetchStringPreference(ACCESS_TOKEN)
 
     private suspend fun saveToken(
         accessToken: String,

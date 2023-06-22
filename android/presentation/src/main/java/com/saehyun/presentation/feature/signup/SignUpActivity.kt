@@ -2,6 +2,7 @@ package com.saehyun.presentation.feature.signup
 
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -32,11 +33,14 @@ import com.saehyun.presentation.component.SMonkeySimpleLayout
 import com.saehyun.presentation.component.SMonkeyTextField
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.component.TopAppBar
+import com.saehyun.presentation.feature.home.HomeActivity
+import com.saehyun.presentation.feature.home.HomeSideEffect
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SMonkeyIcon
 import com.saehyun.presentation.style.SmonkeyBody3
 import com.saehyun.presentation.util.finishWithAnimation
 import com.saehyun.presentation.util.smonkeyClickable
+import com.saehyun.presentation.util.startActivityWithAnimation
 import com.saehyun.presentation.util.systemBarPaddings
 import dagger.hilt.android.AndroidEntryPoint
 import org.orbitmvi.orbit.viewmodel.observe
@@ -87,14 +91,42 @@ class SignUpActivity : ComponentActivity() {
                     )
 
                     SignUpStep.STEP3 -> SignUpThirdScreen(
-                        state = state,
-                        vm = vm,
                         onPrevious = {
                             vm.navigateStep(SignUpStep.STEP2)
                         },
                         onNext = {
-                            vm.signUp()
+                            vm.navigateStep(SignUpStep.STEP4)
                         },
+                        onReasonChanged = vm::updateReason,
+                        selectedReason = state.reason,
+                    )
+
+                    SignUpStep.STEP4 -> SignUpFourthScreen(
+                        onPrevious = { vm.navigateStep(SignUpStep.STEP3) },
+                        onNext = { vm.navigateStep(SignUpStep.STEP5) },
+
+                        )
+
+                    SignUpStep.STEP5 -> SignUpFifthScreen(
+                        onPrevious = { vm.navigateStep(SignUpStep.STEP4) },
+                        onNext = { vm.navigateStep(SignUpStep.STEP6) },
+                        avgDailySmokeCount = state.avgDailySmokeCount,
+                        updateAvgDailySmokeCount = vm::updateAvgDailySmokeCount,
+                        price = state.price,
+                        updatePrice = vm::updatePrice,
+                        updateSmokingStartAt = vm::updateSmokingStartAt,
+                        updateQuitSmokingStartAt = vm::updateQuitSmokingStartAt,
+                        smokePerPack = state.smokePerPack,
+                        updateSmokePerPack = vm::updateSmokePerPack,
+                    )
+
+                    SignUpStep.STEP6 -> SignUpSixthScreen(
+                        onPrevious = { vm.navigateStep(SignUpStep.STEP5) },
+                        onNext = { vm.signUp() },
+                        nickname = state.nickname,
+                        onNicknameChanged = vm::updateNickname,
+                        selectedColor = state.selectedColor,
+                        onColorSelectedChanged = vm::updateSelectedColor
                     )
                 }
             }
@@ -107,7 +139,19 @@ class SignUpActivity : ComponentActivity() {
     }
 
     private fun handleSideEffect(sideEffect: SignUpSideEffect) {
+        when (sideEffect) {
+            is SignUpSideEffect.SendMessage -> {
+                Toast.makeText(this, sideEffect.message, Toast.LENGTH_SHORT).show()
+            }
 
+            is SignUpSideEffect.NavigateToHome -> {
+                startActivityWithAnimation<HomeActivity>()
+            }
+
+            is SignUpSideEffect.NavigateBack -> {
+                finishWithAnimation()
+            }
+        }
     }
 }
 
@@ -162,6 +206,55 @@ fun BaseSignUpScreen(
                     text = title,
                     align = TextAlign.Center,
                 )
+                content()
+            }
+        },
+        bottomContent = {
+            SMonkeyLargeButton(
+                modifier = Modifier
+                    .imePadding(),
+                text = "다음",
+                enabled = true,
+            ) {
+                onNext()
+            }
+        }
+    )
+}
+
+@Composable
+fun BaseProfileScreen(
+    modifier: Modifier = Modifier,
+    onPrevious: () -> Unit,
+    onNext: () -> Unit,
+    title: String,
+    index: Int,
+    maxIndex: Int,
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    SMonkeySimpleLayout(
+        topAppBar = {
+            TopAppBar(
+                leadingContent = {
+                    Image(
+                        modifier = Modifier.smonkeyClickable {
+                            onPrevious()
+                        },
+                        painter = painterResource(id = SMonkeyIcon.Back),
+                        contentDescription = null,
+                    )
+                },
+                centerContent = {
+                    SmonkeyBody3(text = title)
+                }
+            )
+        },
+        content = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Spacer(space = 16.dp)
                 content()
             }
         },
