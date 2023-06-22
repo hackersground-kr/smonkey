@@ -1,12 +1,17 @@
 package com.saehyun.presentation.feature.setting
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.saehyun.presentation.R
 import com.saehyun.presentation.component.BigTopAppBar
 import com.saehyun.presentation.component.SMonkeyLayout
 import com.saehyun.presentation.component.SMonkeySimpleLayout
@@ -14,6 +19,7 @@ import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody1
 import com.saehyun.presentation.style.SmonkeyBody6
+import com.saehyun.presentation.util.randomProgress
 
 @Composable
 fun SettingScreen(
@@ -46,7 +52,14 @@ fun SettingScreen(
                     smonkeyName = state.smonkey.smonkeyName,
                     nextPoint = state.smonkey.nextPoint,
                     point = state.smonkey.point,
-                    percentage = state.smonkey.percentage,
+                    percentage = randomProgress(),
+                )
+                Spacer(space = 24.dp)
+                Image(
+                    modifier = Modifier.fillMaxWidth(),
+                    painter = painterResource(id = R.drawable.bg_mypage),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth
                 )
             }
         },

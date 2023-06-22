@@ -31,7 +31,15 @@ class WriteJournalViewModel @Inject constructor(
         }.onSuccess {
             postSideEffect(WriteJournalSideEffect.Success)
         }.onFailure { exception ->
-            postSideEffect(WriteJournalSideEffect.SendMessage(exception.message ?: ""))
+            when {
+                exception.message?.contains("409") == true -> {
+                    postSideEffect(WriteJournalSideEffect.SendMessage("이미 일지를 등록했어요!"))
+                }
+
+                else -> {
+                    postSideEffect(WriteJournalSideEffect.SendMessage(exception.message ?: ""))
+                }
+            }
         }
     }
 

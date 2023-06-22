@@ -29,6 +29,7 @@ import com.saehyun.presentation.style.SmonkeyBody10
 import com.saehyun.presentation.style.SmonkeyBody3
 import com.saehyun.presentation.style.SmonkeyBody5
 import com.saehyun.presentation.style.SmonkeyBody8
+import com.saehyun.presentation.util.randomProgress
 
 @Composable
 internal fun HomeScreen(
@@ -63,7 +64,7 @@ internal fun HomeScreen(
             smonkeyName = state.smonkey.smonkeyName,
             nextPoint = state.smonkey.nextPoint,
             point = state.smonkey.point,
-            percentage = state.smonkey.percentage,
+            percentage = randomProgress(),
         )
         Spacer(space = 16.dp)
         SMonkeyLargeButton(

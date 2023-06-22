@@ -118,7 +118,7 @@ private fun IntroScreen(
         }
         Spacer(weight = 1f)
         SMonkeyLargeButton(
-            text = "회원기입",
+            text = "회원가입",
             enabled = true,
         ) {
             navigateToSignUp()

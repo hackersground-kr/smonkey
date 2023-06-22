@@ -60,10 +60,6 @@ fun CommunityScreen(
         modifier = Modifier
             .fillMaxSize(), contentAlignment = Alignment.Center
     ) {
-        if(state.isLoading) {
-            CircularProgressIndicator()
-        }
-
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -109,6 +105,10 @@ fun CommunityScreen(
                     PostPreviewLayout(item = item)
                 }
             }
+        }
+
+        if (state.isLoading) {
+            CircularProgressIndicator()
         }
     }
 }

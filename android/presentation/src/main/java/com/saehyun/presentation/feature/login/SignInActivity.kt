@@ -118,13 +118,7 @@ private fun SignInScreen(
             onValueChange = onPasswordChanged,
             hint = "비밀번호",
         )
-        Spacer(space = 12.dp)
-        SmonkeyBody10(
-            modifier = Modifier.fillMaxWidth(),
-            text = "아직 회원이 아니신가요? 회원가입",
-            align = TextAlign.End,
-        )
-        Spacer(space = 16.dp)
+        Spacer(space = 24.dp)
         SMonkeyLargeButton(
             text = "다음",
             enabled = true,
