@@ -92,3 +92,5 @@ gh workflow run "Build and Deploy to App Center" --repo <포크한 사람의 Git
 - 다른 기기로의 접속을 원하실 경우 QR또는 링크를 활용하실 수 있습니다.
 
 <img width="455" alt="5" src="https://github.com/hackersground-kr/smonkey/assets/137253565/ff0c2e0d-6688-477a-bd5c-50fc718b3772">
+
+(모바일에서 APK 다운로드도중 출처가 알 수 없는 앱이라고 경고가 뜰 경우 무시하고 진행하시면 됩니다)
