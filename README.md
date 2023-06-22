@@ -93,8 +93,8 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
 
           - name: make application.yml
             run: |
-                mkdir ./server/src/main/resources
-                cd ./server/src/main/resources
+                mkdir ./backend/src/main/resources
+                cd ./backend/src/main/resources
                 touch ./application.yml
                 echo "${{ secrets.APPLICATION }}" > ./application.yml
             shell: bash
@@ -108,7 +108,7 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
             uses: actions/upload-artifact@v2
             with:
               name: java-app
-              path: '${{ github.workspace }}/server/build/libs/SMonkey-0.0.1.jar'
+              path: '${{ github.workspace }}/backend/build/libs/SMonkey-0.0.1.jar'
    ```
    - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 MySQL에서 smonkey-db라는 이름으로 생성된 데이터베이스를 선택하고 데이터베이스의 서버 이름을 복사합니다.
    - 복사한 서버 이름을 다음 application.yml에 넣기 위해 가지고 있습니다.
