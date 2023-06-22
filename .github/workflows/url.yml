@@ -1,0 +1,5 @@
+steps:
+- name: Build with Gradle
+  env:
+    BASE_URL: ${{ secrets.BASE_URL }}
+  run: ./gradlew build
