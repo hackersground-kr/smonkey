@@ -120,6 +120,12 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
    - 메뉴에 기본 액세스 키를 복사하여 application.yml에 넣기 위해 가지고 있습니다.
 
 4. 위에서 저장한 데이터들을 application.yml에 저장하고 Github Action Secret에 APPLICATION 이라는 키로 아래의 내용을 값으로 저장하기
+   - 깃허브 레포지토리의 Settings에 들어갑니다.
+   ![image](https://github.com/hackersground-kr/smonkey/assets/81136764/87fb644f-8815-4e38-9423-035ff2707732)
+   - 왼쪽 메뉴바에 Secrets and variables -> Actions에 들어갑니다
+   - 오른쪽에 초록색 New repository secret을 클릭합니다.
+   - Name의 값에는 APPLICATION 을 입력하고 Secret에 아래에서 만든 application.yml을 복사해서 붙여넣습니다.
+
 ```
 spring:
     datasource:
