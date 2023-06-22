@@ -29,6 +29,7 @@
 - Microsoft Azure Web
 - Azure CLI
 - Github CLI
+- MySQL
 
 ##### Azure CLI 설치 방법
 mac os - https://learn.microsoft.com/ko-kr/cli/azure/install-azure-cli-macos   
@@ -44,6 +45,16 @@ window
 ```
 $ scoop bucket add github-gh https://github.com/cli/scoop-gh.git
 $ scoop install gh
+```
+
+##### MySQL 설치 방법
+mac os
+```
+$ brew install mysql
+```
+window
+```
+https://dev.mysql.com/downloads/windows/installer/8.0.html
 ```
 
 #### 순서
