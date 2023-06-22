@@ -198,7 +198,6 @@ gh workflow run "Smonkey CI/CD" --repo <포크한 사람의 Github ID>/<포크�
 
      -----------------------------------------
      MySQL 입력화면
-     use smonkey;
      create database smonkey;
      exit
      ```
