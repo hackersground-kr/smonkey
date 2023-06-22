@@ -21,4 +21,6 @@ data class SmonkeyResponse(
     val step: Int,
     @field:SerializedName("userName")
     val userName: String,
+    @field:SerializedName("percentage")
+    val percentage: Float,
 )

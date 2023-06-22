@@ -1,21 +1,23 @@
 package com.saehyun.data.repository
 
 import com.saehyun.data.network.feed.FeedAPI
+import com.saehyun.data.network.feed.FeedListResponse
 import com.saehyun.data.network.feed.FeedResponse
 import com.saehyun.data.network.feed.SimpleFeedResponse
-import com.saehyun.data.network.feed.WriteJournalRequest
+import com.saehyun.data.network.feed.WriteFeedRequest
+import com.saehyun.data.util.FeedType
 import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
     private val feedAPI: FeedAPI
 ) : FeedRepository {
     override suspend fun writeFeed(
-        request: WriteJournalRequest,
-        category: String
+        request: WriteFeedRequest,
+        category: FeedType
     ): SimpleFeedResponse {
         return feedAPI.writeFeed(
             request = request,
-            category = category,
+            category = category.toString(),
         ).content
     }
 
@@ -34,7 +36,7 @@ class FeedRepositoryImpl @Inject constructor(
         ).content
     }
 
-    override suspend fun getFeedList(): List<FeedResponse> {
-        return feedAPI.getFeedList().content
+    override suspend fun getFeedList(category: FeedType): FeedListResponse {
+        return feedAPI.getFeedList(category.toString()).content
     }
 }

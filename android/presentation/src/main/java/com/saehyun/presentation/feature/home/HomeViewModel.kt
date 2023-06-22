@@ -55,6 +55,7 @@ class HomeViewModel @Inject constructor(
                         point = entity.point,
                         smonkeyName = entity.smonkeyName,
                         step = entity.step,
+                        percentage = entity.percentage,
                     ),
                     username = entity.userName,
                     quitSmokingDate = quitSmokingDate,

@@ -4,6 +4,8 @@ import com.saehyun.data.repository.FeedRepository
 import com.saehyun.data.repository.FeedRepositoryImpl
 import com.saehyun.data.repository.JournalRepository
 import com.saehyun.data.repository.JournalRepositoryImpl
+import com.saehyun.data.repository.SmokingRepository
+import com.saehyun.data.repository.SmokingRepositoryImpl
 import com.saehyun.data.repository.SmonkeyRepository
 import com.saehyun.data.repository.SmonkeyRepositoryImpl
 import com.saehyun.data.repository.TokenDataSource
@@ -49,4 +51,10 @@ abstract class BindsRepositoryModule {
     abstract fun bindsTokenDataSourceImpl(
         tokenDataSourceImpl: TokenDataSourceImpl
     ): TokenDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsSmokingRepositoryImpl(
+        smokingRepositoryImpl: SmokingRepositoryImpl
+    ): SmokingRepository
 }

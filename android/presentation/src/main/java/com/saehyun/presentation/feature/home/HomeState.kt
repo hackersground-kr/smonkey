@@ -20,6 +20,7 @@ data class SMonkeyUser(
     val point: Int,
     val smonkeyName: String,
     val step: Int,
+    val percentage: Float,
 ) {
     companion object {
         fun empty() = SMonkeyUser(
@@ -29,6 +30,7 @@ data class SMonkeyUser(
             point = 0,
             smonkeyName = "",
             step = 0,
+            percentage = 0f,
         )
     }
 }

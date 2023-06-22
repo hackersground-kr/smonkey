@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.saehyun.presentation.R
 import com.saehyun.presentation.component.BigTopAppBar
 import com.saehyun.presentation.component.SMonkeyLargeButton
+import com.saehyun.presentation.component.SMonkeyLayout
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody10
@@ -56,40 +57,14 @@ internal fun HomeScreen(
             },
         )
         Spacer(space = 20.dp)
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth()
-                .background(
-                    shape = RoundedCornerShape(12.dp),
-                    color = SMonkeyColor.Gray100,
-                )
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 18.dp,
-                ),
-        ) {
-            Image(
-                modifier = Modifier.size(80.dp),
-                painter = painterResource(id = R.drawable.character_smonkey_1),
-                contentDescription = null,
-            )
-            Column {
-                Row {
-                    SmonkeyBody5(text = state.username)
-                    SmonkeyBody8(text = "님의 스몽키")
-                }
-                Spacer(space = 4.dp)
-                SmonkeyBody8(text = "Level ${state.smonkey.level}. ${state.smonkey.smonkeyName}")
-                Spacer(space = 20.dp)
-                SmonkeyBody10(text = "현재 포인트 ${state.smonkey.point} / 남은 포인트 ${state.smonkey.nextPoint - state.smonkey.point}")
-                Spacer(space = 8.dp)
-                LinearProgressIndicator(
-                    progress = 0.8f, // TODO 계산 공식
-                    color = SMonkeyColor.Main1,
-                )
-            }
-        }
+        SMonkeyLayout(
+            username = state.username,
+            level = state.smonkey.level,
+            smonkeyName = state.smonkey.smonkeyName,
+            nextPoint = state.smonkey.nextPoint,
+            point = state.smonkey.point,
+            percentage = state.smonkey.percentage,
+        )
         Spacer(space = 16.dp)
         SMonkeyLargeButton(
             modifier = Modifier.padding(horizontal = 30.dp),

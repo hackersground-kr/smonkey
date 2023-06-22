@@ -3,9 +3,7 @@ package com.saehyun.presentation.feature.journal.write
 import androidx.lifecycle.ViewModel
 import com.saehyun.common_kotlin.currentDate
 import com.saehyun.common_kotlin.formatString
-import com.saehyun.data.network.feed.WriteJournalRequest
 import com.saehyun.data.network.journal.JournalRequest
-import com.saehyun.data.repository.FeedRepository
 import com.saehyun.data.repository.JournalRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.ContainerHost

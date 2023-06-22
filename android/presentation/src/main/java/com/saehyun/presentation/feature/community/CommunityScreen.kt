@@ -81,7 +81,6 @@ fun CommunityScreen(
 
             },
         )
-        val list = (0..3).map { PostPreviewUiModel.dummy() }
 
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -92,7 +91,7 @@ fun CommunityScreen(
                 bottom = 56.dp,
             ),
         ) {
-            items(list) { item ->
+            items(state.feeds) { item ->
                 PostPreviewLayout(item = item)
             }
         }
