@@ -164,7 +164,19 @@ gh auth login
 gh workflow run "Smonkey CI/CD" --repo <포크한 사람의 Github ID>/<포크한 리포지토리 이름>
 ```
 
-6. 마이크로소프트 애저 클라우드 홈페이지에 접속하여 App Services에 smonkey-backend를 클릭하여 기본 도메인을 복사합니다.
+6. 데이터베이스 생성하기
+   - 위에서 생성한 MySQL의 서버 이름을 가지고 옵니다.
+   - 밑의 명령어를 터미널에서 차례대로 입력해줍니다.
+     ```
+     mysql -u smonkey -p -h <MySQL 서버 이름>
+     Enter password: qpwoeirutyalzm12*
+
+     use smonkey;
+     create database smonkey;
+     exit
+     ```
+
+7. 마이크로소프트 애저 클라우드 홈페이지에 접속하여 App Services에 smonkey-backend를 클릭하여 기본 도메인을 복사합니다.
    - 안드로이드 어플과 연결하기 위해 사용할 서버 주소입니다.
 
 ## Android - 시작하기
