@@ -25,6 +25,7 @@ class CommunityViewModel @Inject constructor(
     }
 
     fun getFeeds(category: FeedType = FeedType.ALL) = intent {
+        reduce { state.copy(isLoading = true) }
         kotlin.runCatching {
             feedRepositoryImpl.getFeedList(category)
         }.onSuccess { response ->
@@ -41,6 +42,8 @@ class CommunityViewModel @Inject constructor(
             reduce { state.copy(feeds = feeds.toPersistentList()) }
         }.onFailure { exception ->
             exception.printStackTrace()
+        }.also {
+            reduce { state.copy(isLoading = false) }
         }
     }
 }

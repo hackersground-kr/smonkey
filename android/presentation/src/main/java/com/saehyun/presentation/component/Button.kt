@@ -39,9 +39,7 @@ fun SMonkeyMediumButton(
             .smonkeyClickable(
                 rippleEnabled = enabled,
             ) {
-                if (enabled) {
-                    onClick()
-                }
+                onClick()
             }
             .runIf(!enabled) {
                 border(
