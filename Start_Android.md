@@ -28,9 +28,9 @@
 
 - 만든 App에 접속합니다.
 
-<img width="668" alt="2" src="https://github.com/hackersground-kr/smonkey/assets/137253565/9d0bc6ae-a356-47f6-a1f9-c31373c964da">
+<img width="636" alt="스크린샷 2023-06-23 오전 2 57 04" src="https://github.com/hackersground-kr/smonkey/assets/80076029/dd5241eb-ba12-4279-b698-e29010673bfe">
 
-- 추후에 활용하기 위해 화면에 보이는 정보 `이름`, `프로젝트 이름`을 기억합니다.
+- 추후에 활용하기 위해 화면(URL)에 보이는 정보 `이름`, `프로젝트 이름`을 **기억**합니다.
 
 ### App Center에서 Token 구해오기
 
@@ -46,7 +46,8 @@
 ### App Center에서 App의 테스트 그룹을 설정하기
 
 - 앱을 배포 대상을 정의하기 위해 배포 그룹(배포 대상)을 정의해야 합니다.
-- [AppCenters](https://appcenter.ms/apps)에 접속하여 좌측 메뉴의 `Distribute → Groups`로 접근해주세요.
+- [AppCenters](https://appcenter.ms/apps)에 접속하여 App에 접근합니다.
+- 좌측 메뉴의 `Distribute → Groups`로 접근합니다.
 - 새로운 테스트 그룹을 기존의 그룹(Collaborators)를 이용할 수 있습니다.
 - 추후 배포할 `테스트 그룹의 이름`이 필요하므로 `기억` 합니다.
 
@@ -64,11 +65,11 @@
 
 - fork한 repository에서 `.github / workflows / deploy.yml` 로 이동합니다.
 
-![3](https://github.com/hackersground-kr/smonkey/assets/137253565/32d59ddc-86c5-41e1-95e7-52ed27951244)
-
+<img width="970" alt="스크린샷 2023-06-23 오전 3 04 15" src="https://github.com/hackersground-kr/smonkey/assets/80076029/ca447fe4-18b6-4cc3-ac20-3e913a32de0b">
 
 - 사진의 설명에 따라 1번칸에 `App Center에서 App 만들기`에서 구한 `이름/프로젝트 이름` 을 순서대로 적습니다.
-- 사진의 설명에 따라 2번칸에 App centor에서 배포할 그룹의 이름을 적습니다.
+- 사진의 설명에 따라 2번칸에 App centor에서 `배포할 그룹의 이름`을 적습니다. (기본값: Collaborators)
+- 변경사항을 반영하기위해 커밋 후 push합니다.
 
 ### Github CLI를 통해 Github Action을 실행시켜 배포를 시작합니다.
 
