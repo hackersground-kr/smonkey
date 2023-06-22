@@ -1,7 +1,15 @@
 package com.saehyun.smonkey_android
 
+import com.saehyun.data.repository.FeedRepository
+import com.saehyun.data.repository.FeedRepositoryImpl
+import com.saehyun.data.repository.JournalRepository
+import com.saehyun.data.repository.JournalRepositoryImpl
+import com.saehyun.data.repository.SmokingRepository
+import com.saehyun.data.repository.SmokingRepositoryImpl
 import com.saehyun.data.repository.SmonkeyRepository
 import com.saehyun.data.repository.SmonkeyRepositoryImpl
+import com.saehyun.data.repository.TokenDataSource
+import com.saehyun.data.repository.TokenDataSourceImpl
 import com.saehyun.data.repository.UserRepository
 import com.saehyun.data.repository.UserRepositoryImpl
 import dagger.Binds
@@ -25,4 +33,28 @@ abstract class BindsRepositoryModule {
     abstract fun bindsSMonkeyRepository(
         sMonkeyRepositoryImpl: SmonkeyRepositoryImpl
     ): SmonkeyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsFeedRepository(
+        feedRepositoryImpl: FeedRepositoryImpl
+    ): FeedRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsJournalRepository(
+        journalRepositoryImpl: JournalRepositoryImpl
+    ): JournalRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsTokenDataSourceImpl(
+        tokenDataSourceImpl: TokenDataSourceImpl
+    ): TokenDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsSmokingRepositoryImpl(
+        smokingRepositoryImpl: SmokingRepositoryImpl
+    ): SmokingRepository
 }

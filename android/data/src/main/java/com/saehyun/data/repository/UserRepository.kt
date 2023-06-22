@@ -7,6 +7,4 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
     suspend fun signIn(request: SignInRequest)
     suspend fun signUp(request: SignUpRequest)
-
-    suspend fun getToken(): Flow<String>
 }

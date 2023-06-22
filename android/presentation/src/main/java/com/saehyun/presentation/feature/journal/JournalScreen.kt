@@ -18,12 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.saehyun.common_kotlin.parseDate
 import com.saehyun.presentation.R
 import com.saehyun.presentation.component.BigTopAppBar
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody1
 import com.saehyun.presentation.style.SmonkeyBody10
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -67,8 +69,8 @@ fun JournalScreen(
             SMonkeyCalendarView(
                 month = state.journalMonth,
                 year = state.journalYear,
-                quitSmokingDates = state.quitSmokingDates,
-                smokingRelapseDates = state.smokingRelapseDates,
+                quitSmokingDates = persistentListOf(1), // FIXME
+                smokingRelapseDates = persistentListOf(1), // FIXME
                 onMonthChanged = { month ->
                     vm.updateMonth(month)
                 },

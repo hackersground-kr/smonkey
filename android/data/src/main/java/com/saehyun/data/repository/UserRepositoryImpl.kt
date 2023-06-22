@@ -14,30 +14,17 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val userAPI: UserAPI,
-    private val context: Context,
+    private val tokenDataSource: TokenDataSource,
 ) : UserRepository {
     override suspend fun signIn(request: SignInRequest) {
         userAPI.signIn(request).content.apply {
-            saveToken(accessToken, refreshToken)
+            tokenDataSource.saveToken(accessToken, refreshToken)
         }
     }
 
     override suspend fun signUp(request: SignUpRequest) {
         userAPI.signUp(request).content.apply {
-            saveToken(accessToken, refreshToken)
-        }
-    }
-
-    override suspend fun getToken(): Flow<String> =
-        context.fetchStringPreference(ACCESS_TOKEN)
-
-    private suspend fun saveToken(
-        accessToken: String,
-        refreshToken: String
-    ) {
-        context.datastore.edit { preference ->
-            preference[ACCESS_TOKEN] = accessToken
-            preference[REFRESH_TOKEN] = refreshToken
+            tokenDataSource.saveToken(accessToken, refreshToken)
         }
     }
 

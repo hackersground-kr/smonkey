@@ -1,25 +1,27 @@
 package com.saehyun.data.network.journal
 
 import com.saehyun.data.network.BaseResponse
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface JournalAPI {
 
     @GET("/journal")
     suspend fun getJournal(
-        date: String,
+        @Query("date") date: String,
     ): BaseResponse<JournalResponse>
 
     @POST("/journal")
     suspend fun writeJournal(
-        request: JournalRequest,
+        @Body request: JournalRequest,
     ): BaseResponse<Unit>
 
     @DELETE("/journal")
     suspend fun deleteJournal(
-        date: String,
+        @Query("date") date: String,
     ): BaseResponse<Unit>
 
 }

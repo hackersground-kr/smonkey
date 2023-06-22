@@ -17,22 +17,51 @@ class HomeViewModel @Inject constructor(
 
     override val container = container<HomeState, HomeSideEffect>(HomeState())
 
+    fun navigateToWriteJournal() = intent {
+        postSideEffect(HomeSideEffect.NavigateToWriteJournal)
+    }
+
     fun getSmonkey() = intent {
         kotlin.runCatching {
             smonkeyRepository.getSmonkey()
         }.onSuccess { response ->
-            val smonkey = response.content
+            val entity = response.content
+            val quitSmokingDate = buildString {
+                append(entity.smokingDates.noSmokingDay)
+                append("일 ")
+                append(entity.smokingDates.noSmokingHour)
+                append("시간 ")
+                append(entity.smokingDates.noSmokingMinute)
+                append("분 ")
+                append(entity.smokingDates.noSmokingSecond)
+                append("초")
+            }
+            val smokingDate = buildString {
+                append(entity.smokingDates.smokingDay)
+                append("일 ")
+                append(entity.smokingDates.smokingHour)
+                append("시간 ")
+                append(entity.smokingDates.smokingMinute)
+                append("분 ")
+                append(entity.smokingDates.smokingSecond)
+                append("초")
+            }
             reduce {
                 state.copy(
                     smonkey = SMonkeyUser(
-                        backgroundColor = smonkey.backgroundColor,
-                        level = smonkey.level,
-                        nextPoint = smonkey.nextPoint,
-                        point = smonkey.point,
-                        smonkeyName = smonkey.smonkeyName,
-                        step = smonkey.step,
+                        backgroundColor = entity.backgroundColor,
+                        level = entity.level,
+                        nextPoint = entity.nextPoint,
+                        point = entity.point,
+                        smonkeyName = entity.smonkeyName,
+                        step = entity.step,
+                        percentage = entity.percentage,
                     ),
-                    username = smonkey.userName
+                    username = entity.userName,
+                    quitSmokingDate = quitSmokingDate,
+                    smokingDate = smokingDate,
+                    savePrice = entity.savePrice,
+                    spendPrice = entity.spendPrice,
                 )
             }
         }.onFailure { exception ->

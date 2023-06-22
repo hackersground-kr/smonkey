@@ -22,17 +22,20 @@ import androidx.compose.ui.unit.dp
 import com.saehyun.presentation.R
 import com.saehyun.presentation.component.BigTopAppBar
 import com.saehyun.presentation.component.SMonkeyLargeButton
+import com.saehyun.presentation.component.SMonkeyLayout
 import com.saehyun.presentation.component.Spacer
 import com.saehyun.presentation.style.SMonkeyColor
 import com.saehyun.presentation.style.SmonkeyBody10
 import com.saehyun.presentation.style.SmonkeyBody3
 import com.saehyun.presentation.style.SmonkeyBody5
 import com.saehyun.presentation.style.SmonkeyBody8
+import com.saehyun.presentation.util.randomProgress
 
 @Composable
 internal fun HomeScreen(
     modifier: Modifier = Modifier,
     state: HomeState,
+    navigateToWriteJournal: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -55,44 +58,21 @@ internal fun HomeScreen(
             },
         )
         Spacer(space = 20.dp)
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth()
-                .background(
-                    shape = RoundedCornerShape(12.dp),
-                    color = SMonkeyColor.Gray100,
-                )
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 18.dp,
-                ),
-        ) {
-            Image(
-                modifier = Modifier.size(80.dp),
-                painter = painterResource(id = R.drawable.character_smonkey_1),
-                contentDescription = null,
-            )
-            Column {
-                SmonkeyBody5(text = state.username)
-                Spacer(space = 4.dp)
-                SmonkeyBody8(text = "다음 단계까지 ${state.smonkey.nextPoint} 포인트")
-                Spacer(space = 20.dp)
-                SmonkeyBody10(text = "얼마 안남았어요! 조금만 힘내요!")
-                Spacer(space = 8.dp)
-                LinearProgressIndicator(
-                    progress = 0.8f,
-                    color = SMonkeyColor.Main1,
-                )
-            }
-        }
+        SMonkeyLayout(
+            username = state.username,
+            level = state.smonkey.level,
+            smonkeyName = state.smonkey.smonkeyName,
+            nextPoint = state.smonkey.nextPoint,
+            point = state.smonkey.point,
+            percentage = randomProgress(),
+        )
         Spacer(space = 16.dp)
         SMonkeyLargeButton(
             modifier = Modifier.padding(horizontal = 30.dp),
             text = "금연 기록하기",
             enabled = true,
         ) {
-
+            navigateToWriteJournal()
         }
         Spacer(space = 16.dp)
         Column(
@@ -106,28 +86,28 @@ internal fun HomeScreen(
                 .padding(all = 16.dp),
         ) {
             SmonkeyBody3(
-                text = "장석연 님이",
+                text = "${state.username}님이",
                 color = SMonkeyColor.Gray100
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "금연한 시간",
-                description = "9일 14시간 13분 30초",
+                description = state.quitSmokingDate,
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "절약한 금액",
-                description = "11,300 원",
+                description = "${state.savePrice} 원",
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "흡연 기간",
-                description = "365일 15시간 1분 21초",
+                description = state.smokingDate,
             )
             Spacer(space = 10.dp)
             HomeTitleAndDescription(
                 title = "소비 금액",
-                description = "441,500 원",
+                description = "${state.spendPrice} 원",
             )
             Spacer(space = 6.dp)
             Image(

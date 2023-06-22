@@ -11,10 +11,18 @@ data class SmonkeyResponse(
     val nextPoint: Int,
     @field:SerializedName("point")
     val point: Int,
+    @field:SerializedName("savePrice")
+    val savePrice: Int,
+    @field:SerializedName("spendPrice")
+    val spendPrice: Int,
+    @field:SerializedName("smokingDates")
+    val smokingDates: SmokingDates,
     @field:SerializedName("smonkeyName")
     val smonkeyName: String,
     @field:SerializedName("step")
     val step: Int,
     @field:SerializedName("userName")
     val userName: String,
+    @field:SerializedName("percentage")
+    val percentage: Float,
 )

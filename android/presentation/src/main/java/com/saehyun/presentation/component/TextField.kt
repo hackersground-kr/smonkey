@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import com.saehyun.presentation.style.SmonkeyBody4
 import com.saehyun.presentation.style.SmonkeyBody6
 import com.saehyun.presentation.style.SmonkeyBody9
 import com.saehyun.presentation.style.SmonkeyTextStyle
+import java.time.format.TextStyle
 
 @Composable
 fun SMonkeyTextField(
@@ -45,8 +47,6 @@ fun SMonkeyTextField(
     hint: String? = null,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
-
-    val borderColor: Color = if (error == null) SMonkeyColor.Gray300 else SMonkeyColor.Error
 
     var passwordVisible by remember {
         mutableStateOf(false)
@@ -67,10 +67,6 @@ fun SMonkeyTextField(
                     shape = RoundedCornerShape(12.dp),
                     color = SMonkeyColor.Gray200,
                 )
-//                .border(
-//                    width = 1.dp,
-//                    color = borderColor
-//                )
                 .wrapContentHeight(Alignment.CenterVertically)
                 .clickable(
                     interactionSource = interactionSource,
@@ -131,7 +127,43 @@ fun SMonkeyTextField(
             )
         }
     }
+}
 
+@Composable
+fun SMonkeyBaseTextField(
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    imeAction: ImeAction = ImeAction.Default,
+    hint: String? = null,
+    textStyle: androidx.compose.ui.text.TextStyle = SmonkeyTextStyle.Body6,
+) {
+
+    BasicTextField(
+        modifier = modifier
+            .fillMaxWidth(0.9f)
+            .padding(start = 14.dp),
+        value = value,
+        onValueChange = onValueChange,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType,
+            imeAction = imeAction
+        ),
+        maxLines = 1,
+        textStyle = textStyle,
+        decorationBox = { innerTextField ->
+            if (value.isEmpty() && hint != null) {
+                Text(
+                    text = hint,
+                    color = Gray400,
+                    style = textStyle,
+                )
+            }
+
+            innerTextField()
+        },
+    )
 }
 
 @Preview

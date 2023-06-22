@@ -5,6 +5,12 @@ data class HomeState(
     val selectedIndex: Int = 0,
     val smonkey: SMonkeyUser = SMonkeyUser.empty(),
     val username: String = "",
+
+    // 금연 관련 정보
+    val quitSmokingDate: String = "",
+    val smokingDate: String = "",
+    val savePrice: Int = 0,
+    val spendPrice: Int = 0,
 )
 
 data class SMonkeyUser(
@@ -14,6 +20,7 @@ data class SMonkeyUser(
     val point: Int,
     val smonkeyName: String,
     val step: Int,
+    val percentage: Float,
 ) {
     companion object {
         fun empty() = SMonkeyUser(
@@ -23,6 +30,7 @@ data class SMonkeyUser(
             point = 0,
             smonkeyName = "",
             step = 0,
+            percentage = 0f,
         )
     }
 }

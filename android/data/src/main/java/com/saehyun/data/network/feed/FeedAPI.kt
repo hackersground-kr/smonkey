@@ -1,6 +1,7 @@
 package com.saehyun.data.network.feed
 
 import com.saehyun.data.network.BaseResponse
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
@@ -12,7 +13,8 @@ interface FeedAPI {
 
     @POST("/feed")
     suspend fun writeFeed(
-        @Query("category") category: String
+        @Query("category") category: String,
+        @Body request: WriteFeedRequest,
     ): BaseResponse<SimpleFeedResponse>
 
     @GET("/feed/{feed-id}")
@@ -28,9 +30,11 @@ interface FeedAPI {
     @PATCH("/feed/{feed-id}/update")
     suspend fun updateFeed(
         @Path("feed-id") feedId: Int,
-        @Query("category") category: String
+        @Query("category") category: String,
     ): BaseResponse<SimpleFeedResponse>
 
     @GET("/feed/list")
-    suspend fun getFeedList(): BaseResponse<FeedResponse>
+    suspend fun getFeedList(
+        @Query("category") category: String,
+    ): BaseResponse<FeedListResponse>
 }

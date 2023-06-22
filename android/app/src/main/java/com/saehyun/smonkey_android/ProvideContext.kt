@@ -2,6 +2,7 @@ package com.saehyun.smonkey_android
 
 import android.content.Context
 import com.saehyun.data.network.user.UserAPI
+import com.saehyun.data.repository.TokenDataSourceImpl
 import com.saehyun.data.repository.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -16,11 +17,9 @@ object ProvideContext {
 
     @Singleton
     @Provides
-    fun provideUserRepository(
-        userAPI: UserAPI,
+    fun provideTokenDataSource(
         @ApplicationContext context: Context
-    ): UserRepositoryImpl = UserRepositoryImpl(
-        userAPI = userAPI,
-        context = context
+    ): TokenDataSourceImpl = TokenDataSourceImpl(
+        context = context,
     )
 }
