@@ -22,8 +22,6 @@ jobs:
       run: |
         echo "sdk.dir=$ANDROID_SDK_ROOT" > ./android/local.properties
         echo "BASE_URL=\"${{ secrets.BASE_URL }}\"" >> ./android/local.properties
-        echo "SECRET_KEY=\"${{ secrets.SECRET_KEY }}\"" >> ./android/local.properties
-
 
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
