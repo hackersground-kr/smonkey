@@ -1,12 +1,14 @@
 package com.saehyun.presentation.feature.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,8 +29,13 @@ class HomeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             val state = homeVM.container.stateFlow.collectAsState().value
+
+            LaunchedEffect(key1 = homeVM) {
+                homeVM.getSmonkey()
+            }
 
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -36,7 +43,7 @@ class HomeActivity : ComponentActivity() {
             ) {
                 Crossfade(targetState = state.selectedIndex, label = "") { index ->
                     when (index) {
-                        0 -> HomeScreen(vm = homeVM)
+                        0 -> HomeScreen(state = state)
                         1 -> JournalScreen(vm = journalVM)
                         2 -> CommunityScreen(vm = communityVM)
                     }
@@ -56,6 +63,10 @@ class HomeActivity : ComponentActivity() {
     }
 
     private fun handleSideEffect(sideEffect: HomeSideEffect) {
-
+        when (sideEffect) {
+            is HomeSideEffect.SendMessage -> {
+                Toast.makeText(this, sideEffect.message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
