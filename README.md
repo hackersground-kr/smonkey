@@ -74,22 +74,22 @@ https://dev.mysql.com/downloads/windows/installer/8.0.html
 az login
 
 # App Service 리소스 생성
-az webapp create --name smonkey-backend --resource-group <resources 그룹 이름>  --plan ASP-rghgsmonkey-8bac --runtime JAVA:17-java17
+az webapp create --name smonkey-server --resource-group <resources 그룹 이름>  --plan ASP-rghgsmonkey-8bac --runtime JAVA:17-java17
 
 # MySQL 리소스 생성
-az mysql server create --name smonkey-db --resource-group <resources 그룹 이름> --location KoreaCentral --admin-user smonkey --admin-password "qpwoeirutyalzm12*" --sku-name GP_Gen5_2  --version 8.0
+az mysql server create --name smonkey-database --resource-group <resources 그룹 이름> --location KoreaCentral --admin-user smonkey --admin-password "qpwoeirutyalzm12*" --sku-name GP_Gen5_2  --version 8.0
 
 # Redis 리소스 생성
-az redis create --name smonkey-redis --resource-group <resources 그룹 이름> --location KoreaCentral --sku "Premium" --vm-size P5 --minimum-tls-version 1.2 --redis-version 6.0
+az redis create --name smonkey-redis-db --resource-group <resources 그룹 이름> --location KoreaCentral --sku "Premium" --vm-size P5 --minimum-tls-version 1.2 --redis-version 6.0
 
 
 ```
 
 3. 마이크로소프트 애저 클라우드 홈페이지에 접속하여 각종 정보를 찾습니다.
-   - App Services에서 위에서 생성한 smonkey-backend라는 이름으로 생성된 App Services에 들어가서 왼쪽 메뉴바에 '배포 센터' 라는 메뉴를 클릭합니다.
+   - App Services에서 위에서 생성한 smonkey-server라는 이름으로 생성된 App Services에 들어가서 왼쪽 메뉴바에 '배포 센터' 라는 메뉴를 클릭합니다.
    - 코드 소스를 Github로 선택하고 깃허브 조직, 리포지토리, 분기를 각각 포크 받은 리포지토리와 동일하게 선택합니다.
    - 워크플로는 추가 옵션을 클릭한 후 위에 저장을 클릭합니다.
-   - 이후 포크받은 깃허브 레포지토리에 들어가 .github/workflows 폴더 아래에 추가된 main_smonkey-backend.yml에 deploy: 전의 내용을 다음과 같이 수정합니다.
+   - 이후 포크받은 깃허브 레포지토리에 들어가 .github/workflows 폴더 아래에 추가된 main_smonkey-server.yml에 deploy: 전의 내용을 다음과 같이 수정합니다.
    ```
    name: Smonkey CI/CD
 
@@ -131,7 +131,7 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
               name: java-app
               path: '${{ github.workspace }}/backend/build/libs/SMonkey-0.0.1.jar'
    ```
-   - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 MySQL에서 smonkey-db라는 이름으로 생성된 데이터베이스를 선택하고 데이터베이스의 서버 이름과 서버 관리자 로그인 이름을 복사합니다.
+   - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 MySQL에서 smonkey-database라는 이름으로 생성된 데이터베이스를 선택하고 데이터베이스의 서버 이름과 서버 관리자 로그인 이름을 복사합니다.
    - 복사한 서버 이름과 서버 관리자 로그인 이름을 다음 application.yml에 넣기 위해 가지고 있습니다.
    - MySQL 왼쪽 메뉴바에 연결보안으로 들어가 젤 아래의 방화벽 규칙을 확인합니다.
   
@@ -139,7 +139,7 @@ az redis create --name smonkey-redis --resource-group <resources 그룹 이름> 
      <img width="299" alt="image" src="https://github.com/hackersground-kr/smonkey/assets/81136764/5a1e97bf-84c9-4d2e-8ca7-0b8a65c0f1b4">
    - 위의 사진과 같은 주소가 존재하지 않다면 [+ 0.0.0.0 - 255.255.255.255 추가] 를 클릭합니다.
    - 이후 위부분의 저장 버튼을 클릭합니다.
-   - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 Azure Cache for Redis에 smonkey-redis라는 이름으로 생성된 Redis를 선택하고 호스트 이름을 복사합니다.
+   - 다시 마이크로소프트 애저 클라우드 홈페이지로 접속하여 Azure Cache for Redis에 smonkey-redis-db라는 이름으로 생성된 Redis를 선택하고 호스트 이름을 복사합니다.
    - Redis 화면에서 포트 항목을 누르고 고급 설정에서 SSL을 통해서만 액세스 허용을 아니요로 변경한 후 비 SSL 포트를 6379로 설정하고 저장합니다.
    - 복사한 호스트 이름을 다음 application.yml에 넣기 위해 가지고 있습니다.
    - Redis 화면 왼쪽 메뉴바에 액세스 키 메뉴를 선택합니다.
@@ -211,7 +211,7 @@ gh workflow run "Smonkey CI/CD" --repo <포크한 사람의 Github ID>/<포크�
      exit
      ```
 
-7. 마이크로소프트 애저 클라우드 홈페이지에 접속하여 App Services에 smonkey-backend를 클릭하여 기본 도메인을 복사합니다.
+7. 마이크로소프트 애저 클라우드 홈페이지에 접속하여 App Services에 smonkey-server를 클릭하여 기본 도메인을 복사합니다.
    - 안드로이드 어플과 연결하기 위해 사용할 서버 주소입니다.
 
 ## Android - 시작하기
