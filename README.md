@@ -22,6 +22,7 @@
 [피그마](https://www.figma.com/proto/7i65sbmulZZHUVWv6EH4Wa/%F0%9F%90%92-HACKERSGROUND?page-id=0%3A1&type=design&node-id=23-5315&viewport=116%2C-644%2C0.09&scaling=contain&starting-point-node-id=23%3A5315&show-proto-sidebar=1&mode=design)
 
 ### 시연영상
+[시연영상](./decks/smonkey.mp4)   
 [유튜브](https://www.youtube.com/watch?v=r6m2N6gnihk)
 
 ## 오픈 소스 라이센스
