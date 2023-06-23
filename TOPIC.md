@@ -43,6 +43,6 @@ MZ세대의 흡연율은 점점 올라가고 있습니다. 국가지표체계에
 
 ## 제품 소개 동영상
 
-[시연영상](./decks/smonkey.mp4)
-[피그마](https://www.figma.com/proto/7i65sbmulZZHUVWv6EH4Wa/%F0%9F%90%92-HACKERSGROUND?page-id=0%3A1&type=design&node-id=23-5315&viewport=116%2C-644%2C0.09&scaling=contain&starting-point-node-id=23%3A5315&show-proto-sidebar=1&mode=design)
+[시연영상](./decks/smonkey.mp4)   
+[피그마](https://www.figma.com/proto/7i65sbmulZZHUVWv6EH4Wa/%F0%9F%90%92-HACKERSGROUND?page-id=0%3A1&type=design&node-id=23-5315&viewport=116%2C-644%2C0.09&scaling=contain&starting-point-node-id=23%3A5315&show-proto-sidebar=1&mode=design)    
 [유튜브](https://www.youtube.com/watch?v=r6m2N6gnihk)
